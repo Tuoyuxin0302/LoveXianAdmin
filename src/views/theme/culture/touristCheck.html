@@ -1,0 +1,133 @@
+<script type="text/html" template lay-done="layui.data.sendParams(d.params)">
+    <input type="text" style="display: none;" name="sceneId" value="{{d.params.sceneId}}">
+    <input type="text" style="display: none;" name="checkId" value="{{d.params.checkId}}">
+</script>
+<!--check面，调取显示的页面-->
+<form class="layui-form layui-row layui-col-space10 layui-bg-white"  lay-filter="touristCheckForm" id="touristCheckForm" style="display: none">
+    <div class="layui-col-md9 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md9 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">景点名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input name"  placeholder="请输入景点名称" readonly>
+                    </div><!--actiontitle 需要改变变量名称-->
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">景点经度</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input longitude" lay-verify="longitude" placeholder="请输入经度" readonly>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">景点纬度</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input latitude" lay-verify="latitude" placeholder="请输入纬度" readonly>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">位置名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input locationName" lay-verify="locationName" placeholder="请输入景点位置" readonly>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">旺季时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input hotTime" lay-verify="hotTime" placeholder="请输入旺季时间" readonly>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">淡季时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input coldTime" lay-verify="coldTime" placeholder="请输入淡季时间" readonly>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">门票信息</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input tickets" lay-verify="tickets" placeholder="请输入门票" readonly>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">官网地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input website" lay-verify="website" placeholder="请输入官网地址" readonly>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">景点简介</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入景点简介" class="layui-textarea introduction" readonly="readonly" disabled="disabled"></textarea>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">交通信息</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入交通攻略" class="layui-textarea traffic" readonly="readonly" disabled="disabled"></textarea>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">其他信息</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入其他信息" class="layui-textarea others"  readonly="readonly" disabled="disabled"></textarea>
+                    </div><!--同样需要修改变量名称-->
+                </div>
+
+            </div>
+            <div class="layui-col-md3 layui-col-xs5"><!--封面-->
+                <div class="layui-upload-list thumbBox mag0 magt4">
+                    <img class="layui-upload-img thumbnails">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3 layui-col-xs10">
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+        <div class="border">
+            <div class="layui-form-item openness">
+                <label class="layui-form-label" style="width: 13%"><i class="seraph icon-look"></i> 公开度</label>
+                <div class="layui-input-block" >
+                    <input type="radio" name="opennessCheck" value="1" title="开放浏览" lay-skin="primary" disabled checked />
+                    <input type="radio" name="opennessCheck" value="0" title="私密浏览" lay-skin="primary" disabled/>
+                </div>
+            </div>
+            <div class="layui-form-item newsTop">
+                <label class="layui-form-label" style="width: 13%"><i class="seraph icon-zhiding"></i> 置　顶</label>
+                <div class="layui-input-block" >
+                    <input type="checkbox" name="isTopCheck" lay-skin="switch" lay-text="是|否" disabled>
+                </div>
+            </div>
+        </div>
+
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe679;</i> 审核</blockquote>
+        <div class="border">
+            <div class="layui-form-item checkState">
+                <label class="layui-form-label"><i class="seraph icon-look"></i> 操作</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="checkState" title="审核通过" lay-skin="primary" lay-filter="checkState" value="1" checked />
+                    <input type="radio" name="checkState" title="审核拒绝" lay-skin="primary" lay-filter="checkState" value="2"/>
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide releaseDate">
+                <label class="layui-form-label lovexian-form-item-require"></label>
+                <div class="layui-input-block ">
+                    <input type="text" class="layui-input" id="refuseReason" placeholder="请填写拒绝原因" />
+                </div>
+            </div>
+            <div class="layui-form-item ">
+                <label class="layui-form-label"></label>
+                <div class="layui-left">
+                    <a class="layui-btn layui-btn-sm" lay-filter="checkAct" lay-submit><i class="layui-icon">&#xe609;</i>确定</a>
+                    <a id='cancelBtn' class="layui-btn layui-btn-sm layui-btn-danger" > <i
+                            class="layui-icon">&#xe850;</i> 取 消 </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    layui.use('theme/culture/touristActivityCheck', layui.factory('theme/culture/touristActivityCheck'));
+</script>
+

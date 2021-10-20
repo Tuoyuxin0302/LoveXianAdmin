@@ -1,0 +1,15 @@
+<!--<script type="text/html" template>-->
+    <div class="layui-fluid layui-anim lovexian-anim" id="lovexian-swagger" lay-title="Swagger文档">
+        <div class="layui-row lovexian-container">
+            <iframe id="container" src="http://127.0.0.1:9090/swagger-ui.html" frameborder="no" style="width: 100%;" scrolling="auto" />
+        </div>
+    </div>
+<!-- </script>-->
+
+<script type="text/javascript">
+    layui.use(['jquery'], function () {
+        var $ = layui.jquery,
+            $view = $('#lovexian-swagger');
+        $view.find('#container').css({"height": document.documentElement.clientHeight - 97 + 'px'});
+    });
+</script>

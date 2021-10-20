@@ -1,0 +1,138 @@
+<!--#include virtual="/365cssfile.html" -->
+<script type="text/html" template lay-done="layui.data.sendParams(d.params)">
+    <input type="text" style="display: none;" name="id" value="{{d.params.id || ''}}">
+</script>
+<body>
+<form class="layui-form layui-row layui-col-space10 layui-bg-white" lay-filter = "investCon" id="investCon">
+    <div class="layui-col-md10 layui-col-xs12 layui-editor-365">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md12 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">文章标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input actionTitle" name="actionTitle" lay-verify="notnull" placeholder="请输入文章标题">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">子标题</label>
+                    <div class="layui-input-block ">
+                        <input type="text" class="layui-input subTitle" name="subTitle" lay-verify="notnull" placeholder="请输入文章子标题">
+                    </div>
+                </div>
+            </div>
+		</div>
+        <div class="layui-form-item magb0">
+            <label class="layui-form-label">文章内容</label>
+            <div class="layui-input-block">
+                <script id="investContent" name="investContent" lay-verify="investContent" style="width:100%;margin: 0 auto;" type="text/plain"/>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md2 layui-col-xs12">
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 文章封面</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <div class="layui-upload-list thumbBox mag0 magt4" id="image">
+                    <img id="investImage" class="layui-upload-img thumbImg" lay-verify="imgnotnull">
+                </div>
+            </div>
+        </div>
+
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 文章摘要</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <textarea placeholder="请输入文章摘要" name="abstract" class="layui-textarea abstract"></textarea>
+            </div>
+        </div>
+
+        <blockquote class="layui-elem-quote title" style="display: none"><i class="layui-icon">&#xe66e;</i> 语种选择</blockquote>
+        <div class="border" style="display: none">
+            <select name="languageTypeId" id="languageTypeId" lay-verify="required">
+                <option value="1" selected>英语</option>
+                <option value="2">汉语</option>
+            </select>
+        </div>
+        <blockquote class="layui-elem-quote title magt10"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <label class="layui-form-label"><i class="layui-icon">&#xe60e;</i> 状　态</label>
+                <div class="layui-input-block actionStatus">
+                    <select name="checkState" lay-verify="required">
+                    <option value="100">保存草稿</option>
+                    <option value="0">等待审核</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item openness">
+                <label class="layui-form-label"><i class="seraph icon-look"></i> 公开度</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="openness" title="开放浏览" value="1" lay-skin="primary" checked />
+					<input type="radio" name="openness" title="私密浏览" value="0" lay-skin="primary" />
+                </div>
+            </div>
+            <div class="layui-form-item newsTop">
+				<label class="layui-form-label"><i class="seraph icon-zhiding"></i> 置　顶</label>
+				<div class="layui-input-block">
+					<input type="checkbox" name="isTop" lay-skin="switch" lay-text="是|否">
+				</div>
+            </div>
+            <hr class="layui-bg-gray" />
+            <div class="layui-right">
+                <a  id="saveBtn" class="layui-btn layui-btn-sm" lay-filter="addNews" lay-submit><i class="layui-icon">&#xe655;</i>保存</a>
+                <a  id='cancelBtn' class="layui-btn layui-btn-sm layui-btn-danger" lay-filter="cancelBtn" lay-submit> <i class="layui-icon">&#xe850;</i> 取 消 </a>
+
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+<!--#include virtual="/365jsfile.html" -->
+<script>
+    var actContent;
+    layui.data.sendParams = function(params){
+        /// 初始化编辑器
+        console.log("params");
+        console.log(params);
+        actContent = UE.getEditor('investContent', {
+            initialFrameHeight: 580, // 初始化编辑器高度
+            styleIcon: "http://img.cndesign.com/upload/news/20180918/9473750d3f3743009c227b857df426db.jpg", // 素材区头部的logo图标地址链接，不填或为空则不展示logo
+            styleTitle: "爱上西安", // 素材区头部的title标题，不填或为空则不展示title
+            styleShow: true, // 是否默认展示素材区，true为默认展示，false为默认不展示
+            styleWidth: 400, // 素材区宽度
+            readonly: false,//只读
+            appkey: 'fYNoZiw9ZV' // 付费获取的Appkey
+        });
+        var default_editor_content = '<section class="KolEditor" style="position: relative;"><section style="margin-right: auto; margin-left: auto; clear: both; position: relative; width: 473px; overflow: hidden;"><section style="margin-top: 0.5em; margin-bottom: 1em; position: static; text-align: center;"><section><section style="width: 300px; height: 74px; display: inline-block;"><img src="http://img.cndesign.com/upload/news/20180918/9473750d3f3743009c227b857df426db.jpg" style="width: 300px;" _src="http://editor-material.oss-cn-beijing.aliyuncs.com/style/20191104/1572860196/96012000_0.jpeg"></section></section><section style="margin-top: -74px;margin-right: auto;margin-left: auto;padding: 5px 15px;width: 280px;height: 58px;overflow: hidden;"><section style="padding: 10px; color: inherit;"><p style="font-size: 20px; color: rgb(254, 254, 254); line-height: 1.6em;">365编辑器企业定制</p></section></section></section></section></section><p><br></p><section class="KolEditor" style="white-space: normal; font-family: Arial; border: 0px none; color: rgb(49, 147, 105); position: relative;"><section style="margin-top: 35px; margin-bottom: 10px; display: inline-block;"><section style="padding-top: 2px; padding-right: 5px; padding-left: 5px; border-bottom: 1px solid rgb(255, 129, 36); color: inherit; border-top-style: none;"><section style="margin-top: -52px; float: left; color: inherit;"><section style="height: 0px; width: 0px; border-width: 16px; border-style: solid; border-color: transparent transparent rgb(255, 129, 36); color: inherit;"></section><section style="margin-left: 6px; width: 21px; height: 10px; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background-color: rgb(255, 129, 36);"></section><section style="margin-top: -8px; color: inherit;"><section style="margin-left: 6px; width: 8px; height: 12px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section><section style="margin-left: 5px; width: 8px; height: 14px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section></section></section><section style="margin-top: -32px; margin-left: 25px; color: inherit;"><section style="padding-top: 5px; padding-right: 15px; padding-left: 15px; color: inherit;"><span style="color: inherit; font-size: 14px;">系统嵌入简单修改几行前段JS代码即可，具体可见“企业定制版调用说明”；</span></section></section></section></section></section><section class="KolEditor" style="white-space: normal; font-family: Arial; border: 0px none; color: rgb(49, 147, 105); position: relative;"><section style="margin-top: 35px; margin-bottom: 10px; display: inline-block;"><section style="padding-top: 2px; padding-right: 5px; padding-left: 5px; border-bottom: 1px solid rgb(255, 129, 36); color: inherit; border-top-style: none;"><section style="margin-top: -47px; float: left; color: inherit;"><section style="height: 0px; width: 0px; border-width: 16px; border-style: solid; border-color: transparent transparent rgb(255, 129, 36); color: inherit;"></section><section style="margin-left: 6px; width: 21px; height: 10px; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background-color: rgb(255, 129, 36);"></section><section style="margin-top: -8px; color: inherit;"><section style="margin-left: 6px; width: 8px; height: 12px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section><section style="margin-left: 5px; width: 8px; height: 14px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section></section></section><section style="margin-top: -32px; margin-left: 25px; color: inherit;"><section style="padding-top: 5px; padding-right: 15px; padding-left: 15px; color: inherit;"><span style="color: inherit; font-size: 14px;">嵌入后原业务系统的编辑区将替换成365编辑器编辑区；</span></section></section></section></section></section><section class="KolEditor" style="white-space: normal; font-family: Arial; border: 0px none; color: rgb(49, 147, 105); position: relative;"><section style="margin-top: 35px; margin-bottom: 10px; display: inline-block;"><section style="padding-top: 2px; padding-right: 5px; padding-left: 5px; border-bottom: 1px solid rgb(255, 129, 36); color: inherit; border-top-style: none;"><section style="margin-top: -52px; float: left; color: inherit;"><section style="height: 0px; width: 0px; border-width: 16px; border-style: solid; border-color: transparent transparent rgb(255, 129, 36); color: inherit;"></section><section style="margin-left: 6px; width: 21px; height: 10px; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background-color: rgb(255, 129, 36);"></section><section style="margin-top: -8px; color: inherit;"><section style="margin-left: 6px; width: 8px; height: 12px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section><section style="margin-left: 5px; width: 8px; height: 14px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section></section></section><section style="margin-top: -32px; margin-left: 25px; color: inherit;"><section style="padding-top: 5px; padding-right: 15px; padding-left: 15px; color: inherit;"><span style="color: inherit; font-size: 14px;">付费获取Appkey后，同步使用365编辑器；</span></section></section></section></section></section><section class="KolEditor" style="white-space: normal; font-family: Arial; border: 0px none; color: rgb(49, 147, 105); position: relative;"><section style="margin-top: 35px; margin-bottom: 10px; display: inline-block;"><section style="padding-top: 2px; padding-right: 5px; padding-left: 5px; border-bottom: 1px solid rgb(255, 129, 36); color: inherit; border-top-style: none;"><section style="margin-top: -47px; float: left; color: inherit;"><section style="height: 0px; width: 0px; border-width: 16px; border-style: solid; border-color: transparent transparent rgb(255, 129, 36); color: inherit;"></section><section style="margin-left: 6px; width: 21px; height: 10px; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background-color: rgb(255, 129, 36);"></section><section style="margin-top: -8px; color: inherit;"><section style="margin-left: 6px; width: 8px; height: 12px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section><section style="margin-left: 5px; width: 8px; height: 14px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section></section></section><section style="margin-top: -32px; margin-left: 25px; color: inherit;"><section style="padding-top: 5px; padding-right: 15px; padding-left: 15px; color: inherit;"><span style="color: inherit; font-size: 14px;">上传的内容数据保存至企业内部业务系统服务器，365编辑器不作任何获取或备份；</span></section></section></section></section></section><section class="KolEditor" style="white-space: normal; font-family: Arial; border: 0px none; color: rgb(49, 147, 105); position: relative;"><section style="margin-top: 35px; margin-bottom: 10px; display: inline-block;"><section style="padding-top: 2px; padding-right: 5px; padding-left: 5px; border-bottom: 1px solid rgb(255, 129, 36); color: inherit; border-top-style: none;"><section style="margin-top: -52px; float: left; color: inherit;"><section style="height: 0px; width: 0px; border-width: 16px; border-style: solid; border-color: transparent transparent rgb(255, 129, 36); color: inherit;"></section><section style="margin-left: 6px; width: 21px; height: 10px; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background-color: rgb(255, 129, 36);"></section><section style="margin-top: -8px; color: inherit;"><section style="margin-left: 6px; width: 8px; height: 12px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section><section style="margin-left: 5px; width: 8px; height: 14px; display: inline-block; color: rgb(255, 255, 255); border-color: rgb(255, 129, 36); background: rgb(255, 129, 36);"></section></section></section><section style="margin-top: -32px; margin-left: 25px; color: inherit;"><section style="padding-top: 5px; padding-right: 15px; padding-left: 15px; color: inherit;"><span style="color: inherit; font-size: 14px;">365编辑器系统优化后，可免费升级。</span></section></section></section></section></section><section class="KolEditor" style="white-space: normal; font-family: Arial; border: 0px none; color: rgb(49, 147, 105); position: relative;"></section>';
+
+        // 注：ue.setContent()方法需放在编辑器准备就绪后去执行
+        if(params.isEdit){
+            actContent.ready(function() {
+                actContent.setContent(params.investContent)
+            });
+        }else{
+            actContent.ready(function() {
+                actContent.setContent(default_editor_content)
+            });
+        }
+    };
+
+    layui.use(['baseSetting','upload'],function () {
+        var proPath = layui.baseSetting.LoveXianConfig.proApi,setter = layui.setter;
+        //上传缩略图
+        layui.upload.render({
+            elem: '#image',
+            url: proPath+'/fileupload/smallfile',
+            method : "post",  //此处是为了演示之用，实际使用中请将此删除，默认用post方式提交
+            headers: {
+                Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+            },
+            done: function(res, index, upload){
+                $('.thumbImg').attr('src',res.data.url);
+                $('.thumbBox').css("background","#fff");
+            }
+        });
+    })
+</script>
+<script>
+    layui.use('theme/life/investAdd', layui.factory('theme/life/investAdd'));
+</script>

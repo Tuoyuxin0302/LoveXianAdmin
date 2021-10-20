@@ -1,0 +1,129 @@
+
+<form class="layui-form layui-row layui-col-space10 layui-bg-white placeForm" style="display: none" lay-filter="placeForm" id="placeForm">
+    <input type="text" class="hidden" lay-verify="id" name="id" style="display: none;">
+    <div class="layui-col-md9 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md9 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">地点名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input placeName" lay-verify="placeName" name="placeName" placeholder="请输入地点名称">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input placeAddress" lay-verify="placeAddress" name="placeAddress" placeholder="请输入地址">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">经度</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input placeLongitude" lay-verify="placeLongitude" name="placeLongitude" placeholder="请输入经度" readonly="readonly">
+                    </div>
+                    <label class="layui-form-label">纬度</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input placeLatitude" lay-verify="placeLatitude" name="placeLatitude" placeholder="请输入纬度" readonly="readonly">
+                    </div>
+                    <div class="layui-input-inline">
+                        <button type="button" class="layui-btn" onclick="gaodeMap()" >高德查询</button>
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">开放时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input openTime" lay-verify="openTime" name="openTime" placeholder="请输入开放时间">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">官网地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input website" lay-verify="website" name="website" placeholder="请输入官网地址">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">简介</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入简介" class="layui-textarea englishIntroduce" lay-verify="englishIntroduce" name="englishIntroduce" style="height: 200px"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3 layui-col-xs5">
+                <div class="layui-upload-list thumbBox mag0 magt4" id="fengmian" >
+                    <img class="layui-upload-img thumbnails" lay-verify="imgnotnull">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">详细内容</label>
+            <div class="layui-input-block">
+				<textarea name="content" class="layui-textarea" lay-verify="placeContent" id="content" style="height: 200px">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3 layui-col-xs12">
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 分类目录</blockquote>
+        <div class="border category">
+            <div id="actionCategory">
+                <div class="layui-input-block">
+                    <select name="type" class="placeType" lay-verify="placeType">
+                        <option value="请选择地点类型">请选择地点类型</option>
+                        <option value="1">地标建筑</option>
+                        <option value="2">学校</option>
+                        <option value="3">涉外医疗机构</option>
+                        <option value="4">文化场馆</option>
+                        <option value="5">博物馆</option>
+                        <option value="6">体育馆</option>
+                        <option value="7">公园</option>
+                        <option value="8">酒店</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+<!--        <blockquote class="layui-elem-quote title magt10"><i class="layui-icon">&#xe609;</i> 语言类型</blockquote>-->
+<!--        <div class="layui-inline">-->
+<!--            <div class="layui-input-inline">-->
+<!--                <select name="check" class="languageType">-->
+<!--                    <option value="请选择语言类型">请选择语言类型</option>-->
+<!--                    <option value="1">英文</option>-->
+<!--                    <option value="2">中文</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+        <blockquote class="layui-elem-quote title magt10"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <label class="layui-form-label">展示</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" class="isShow" name="isShow" lay-skin="switch" lay-text="是|否">
+                </div>
+            </div>
+            <div class="layui-form-item newsTop">
+                <label class="layui-form-label"><i class="seraph icon-zhiding"></i> 置顶</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" class="isTop" name="isTop" lay-skin="switch" lay-text="是|否">
+                </div>
+            </div>
+            <hr class="layui-bg-gray" />
+            <div class="layui-form-item">
+                <button class="layui-btn" type="button" id="hospital">
+                    <i class="layui-icon">&#xe67c;</i>上传医院详情，其他模块暂不需要
+                </button>
+                <div class="layui-input-block">
+                    <input type="text" class="layui-input static" name="static">
+                </div>
+            </div>
+            <hr class="layui-bg-gray" />
+            <div class="layui-right">
+                <a  id="saveBtn" class="layui-btn layui-btn-sm" lay-filter="addNews" lay-submit><i class="layui-icon">&#xe655;</i>保存</a>
+                <a class="layui-btn layui-btn-primary layui-btn-sm" lay-filter="exit" id="close" ><i class="layui-icon">&#xe850;</i>取消</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    // layui.use('theme/culture/placeAdd', layui.factory('theme/culture/placeAdd'));
+</script>

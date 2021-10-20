@@ -1,0 +1,169 @@
+
+<style>
+    .layui-side{
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+    #LAY_app_body{
+        top:2px;
+        background-color: #fcfcfc;
+    }
+    .layui-header{
+        width:0px;
+        height: 0px;
+        display: none;
+    }
+    #user-add {
+        padding: 20px 25px 25px 0;
+        top: 0px;
+        background-color: #fcfcfc;
+    }
+    #user-add .layui-treeSelect .ztree li a, .ztree li span {
+        margin: 0 0 2px 3px !important;
+    }
+</style>
+<div class="layui-fluid" id="user-add" >
+    <form class="layui-form" action="" lay-filter="user-add-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">用户名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" minlength="2" maxlength="10" lay-verify="range|username"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机：</label>
+            <div class="layui-input-block">
+                <input type="tel" name="mobile" lay-verify="phone" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱：</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" lay-verify="email" maxlength="50" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">角色：</label>
+            <div class="layui-input-block">
+                <select name="roleId"
+                        lay-verify="required"
+                        xm-select-direction="down"
+                        xm-select="user-add-role"
+                        xm-select-skin="default">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门：</label>
+            <div class="layui-input-block">
+                <input type="text" name="deptId" id="user-add-dept" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">状态：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="lockStatus" value="1" title="有效" checked="">
+                <input type="radio" name="lockStatus" value="0" title="禁用">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">性别：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="0" title="男性">
+                <input type="radio" name="sex" value="1" title="女性">
+                <input type="radio" name="sex" value="2" title="保密" checked="">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注：</label>
+            <div class="layui-input-block">
+                <textarea name="description" maxlength="100" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item lovexian-hide">
+            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="user-add-form-submit" id="submit">提交</button>
+            <button type="reset" class="layui-btn-primary layui-btn-sm" id="reset">重置</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['lovexian', 'form', 'baseSetting','formSelects', 'validate', 'treeSelect'], function () {
+        var $ = layui.$,
+            proPath = layui.baseSetting.LoveXianConfig.proApi,
+            lovexian = layui.lovexian,
+            layer = layui.layer,
+            setter = layui.setter,
+            formSelects = layui.formSelects,
+            treeSelect = layui.treeSelect,
+            form = layui.form,
+            $view = $('#user-add'),
+            validate = layui.validate;
+
+        // form.verify(validate);
+        form.render();
+        formSelects.render();
+
+        treeSelect.render({
+            elem: $view.find('#user-add-dept'),
+            type: 'get',
+            data: proPath + '/system/dept/select/tree',
+            headers: {
+                Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+            },
+            placeholder: '请选择',
+            search: false
+        });
+
+        formSelects.config('user-add-role', {
+            searchUrl: proPath + '/system/role/list',
+            response: {
+                statusCode: 200
+            },
+            header: {
+                Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+            },
+            beforeSuccess: function (id, url, searchVal, result) {
+                var data = result.data.rows;
+                var tranData = [];
+                for (var i = 0; i < data.length; i++) {
+                    tranData.push({
+                        name: data[i].roleName,
+                        value: data[i].roleId
+                    })
+                }
+                result.data = tranData;
+                return result;
+            },
+            error: function (id, url, searchVal, err) {
+                // console.error(err);
+                lovexian.alert.error('获取角色列表失败');
+            }
+        });
+
+        form.on('submit(user-add-form-submit)', function (data) {
+            lovexian.get(proPath+'/system/admin/check/'+data.field.username,null,function (res) {
+                if(res.data == true){
+                    lovexian.post(proPath + '/system/admin', data.field, function () {
+                        if(res.status == '200'){
+                            lovexian.alert.success('新增用户成功，初始密码为 1234qwer');
+                            setTimeout(function(){
+                                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                parent.layer.close(index); //再执行关闭
+                            },2000)
+                        }else{
+                            lovexian.alert.error('新增用户失败');
+                        }
+                    });
+                }else{
+                    lovexian.alert.error('新增用户失败，用户名已经存在');
+                }
+            });
+
+            return false;
+        });
+    });
+</script>

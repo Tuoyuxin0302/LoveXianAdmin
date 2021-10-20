@@ -1,0 +1,30 @@
+<script type="text/html" template >
+    <ul class="layui-timeline">
+        {{# layui.each(d.params.history,function(index,item){ }}
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <h3 class="layui-timeline-title">{{ item.checkTimeYMD }}</h3>
+                    <p>
+                        <label class="lovexian-form-item-require">审核人员：{{ item.checkerName}}</label>
+                        <br>
+                        {{# if(item.checkState == 1){ }}
+                            <span class="layui-badge lovexian-tag-green" style="height: 18px;margin-top: 5px">审核通过</span>
+                        {{# } }}
+                        {{# if(item.checkState == 2){ }}
+                            <span class="layui-badge lovexian-tag-volcano" style="height: 18px;margin-top: 5px;margin-bottom: 5px">审核拒绝</span>
+                            <br>
+                            <label class="lovexian-form-item-require">拒绝原因：{{ item.refuseReason}}</label>
+                        {{# } }}
+                    </p>
+                </div>
+            </li>
+        {{#  }); }}
+        <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+                <div class="layui-timeline-title">过去</div>
+            </div>
+        </li>
+    </ul>
+</script>

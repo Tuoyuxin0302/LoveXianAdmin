@@ -1,0 +1,141 @@
+<script type="text/html" template>
+  <link
+    rel="stylesheet"
+    href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1"
+    media="all"
+  />
+  <link
+    rel="stylesheet"
+    href="{{ layui.setter.base }}style/login-style.css?v={{ layui.admin.v }}-1"
+    media="all"
+  />
+</script>
+<div
+  class="layadmin-user-login layadmin-user-display-show login"
+  id="LAY-user-login"
+  style="display: none; background-color: #fff"
+>
+  <div class="layadmin-user-login-main login_m">
+    <div class="layadmin-user-login-box layadmin-user-login-header">
+      <h2>重置密保问题与密码</h2>
+    </div>
+
+    <div class="login_boder">
+      <div
+        class="layadmin-user-login-box layadmin-user-login-body layui-form login_padding"
+      >
+        <span>用户名</span>
+        <div class="layui-form-item">
+          <label
+            class="layadmin-user-login-icon layui-icon layui-icon-username"
+            for="LAY-user-login-username"
+          ></label>
+          <input
+            type="text"
+            id="LAY-user-login-username"
+            placeholder="用户名"
+            name="username"
+            lay-verify="required"
+            class="layui-input"
+          />
+        </div>
+        <span>密保问题</span>
+        <div class="layui-form-item">
+          <label
+            class="layadmin-user-login-icon layui-icon layui-icon-password"
+            for="LAY-user-login-protect"
+          ></label>
+          <input
+            type="text"
+            name="answer"
+            id="LAY-user-login-protect"
+            placeholder="您的出生地址"
+            lay-verify="required"
+            class="layui-input"
+          />
+        </div>
+
+        <div class="layui-form-item">
+          <button
+            class="layui-btn layui-btn-fluid"
+            lay-submit
+            id="loginBtn"
+            lay-filter="LAY-user-login-submit"
+          >
+            重置密码与密保问题
+          </button>
+        </div>
+        <div class="layui-form-item">
+          <button class="layui-btn layui-btn-fluid" lay-href="user/login">
+            返回登录
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-trans layadmin-user-login-footer">
+      <p>
+        © 2019 <a href="http://www.xpu.edu/" target="_blank">西安工程大学</a>
+      </p>
+    </div>
+  </div>
+  <script>
+    layui.use(
+      ["admin", "form", "user", "baseSetting", "lovexian"],
+      function () {
+        var $ = layui.$,
+          setter = layui.setter,
+          admin = layui.admin,
+          form = layui.form,
+          router = layui.router(),
+          lovexian = layui.lovexian,
+          search = router.search,
+          proPath = layui.baseSetting.LoveXianConfig.proApi;
+        form.render();
+        //提交
+        form.on("submit(LAY-user-login-submit)", function (obj) {
+          var index = layer.load(0, { shade: false });
+          $("#loginBtn").attr("disabled", "disabled");
+          $("#loginBtn").addClass("layui-btn-disabled");
+          //请求重置接口
+          admin.req({
+            url: proPath + "system/admin/password/forget",
+            type: "PUT",
+            data: obj.field,
+            error: function (err) {
+              layer.msg(err.responseJSON.message, {
+                offset: "15px",
+                icon: 2,
+              });
+            },
+            done: function (res) {
+              layer.close(index);
+              if (res.status == "200") {
+                //重置成功的提示与跳转
+                layer.msg(
+                  "重置成功",
+                  {
+                    offset: "15px",
+                    icon: 1,
+                    time: 1000,
+                  },
+                  function () {
+                    $("#loginBtn").removeAttr("disabled");
+                    $("#loginBtn").removeClass("layui-btn-disabled");
+                    location.hash = "user/login";
+                  }
+                );
+              } else {
+                $("#loginBtn").removeAttr("disabled");
+                $("#loginBtn").removeClass("layui-btn-disabled");
+                if (res.status == "400") {
+                  lovexian.alert.error(res.message);
+                }
+              }
+            },
+          });
+        });
+      }
+    );
+  </script>
+</div>

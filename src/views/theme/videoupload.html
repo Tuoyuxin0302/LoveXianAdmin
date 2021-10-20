@@ -1,0 +1,1164 @@
+<html>
+<style>
+    .page-view-totla {
+        font-size: 36px;
+        color: #666;
+        line-height: 36px;
+        padding: 5px 0 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        white-space: nowrap;
+    }
+</style>
+
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+            <div class="layui-row layui-col-space15">
+
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">快捷方式</div>
+                        <div class="layui-card-body">
+
+                            <div class="layadmin-shortcut">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="theme/life/health">
+                                                <i class="layui-icon layui-icon-console"></i>
+                                                <cite>爱健康</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="theme/life/activity">
+                                                <i class="layui-icon layui-icon-chart"></i>
+                                                <cite>爱活动</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="theme/life/invest">
+                                                <i class="layui-icon layui-icon-template-1"></i>
+                                                <cite>爱投资</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="/senior/im/">
+                                                <i class="layui-icon layui-icon-chat"></i>
+                                                <cite>爱有家</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="component/progress/index">
+                                                <i class="layui-icon layui-icon-find-fill"></i>
+                                                <cite>爱学习</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="app/workorder/list">
+                                                <i class="layui-icon layui-icon-survey"></i>
+                                                <cite>爱公平</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="user/user/list">
+                                                <i class="layui-icon layui-icon-user"></i>
+                                                <cite>爱工作</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="set/system/website">
+                                                <i class="layui-icon layui-icon-set"></i>
+                                                <cite>爱文化</cite>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">数据统计</div>
+                        <div class="layui-card-body">
+
+                            <div class="layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs6">
+                                            <a  class="layadmin-backlog-body">
+                                                <h3>发布文章</h3>
+                                                <p><cite id="article"></cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a  class="layadmin-backlog-body">
+                                                <h3>上传图片</h3>
+                                                <p><cite id="image"></cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a  class="layadmin-backlog-body">
+                                                <h3>上传视频</h3>
+                                                <p><cite id="video"></cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a  class="layadmin-backlog-body">
+                                                <h3>上传音频</h3>
+                                                <p><cite id="audio"></cite></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+            </div>
+
+
+        <!--右半部分-->
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">版本信息</div>
+                <div class="layui-card-body layui-text">
+                    <table class="layui-table">
+                        <colgroup>
+                            <col width="100">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>当前版本</td>
+                            <td>
+                                <script type="text/html" template>
+                                    v{{ layui.admin.v }}
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>基于框架</td>
+                            <td>
+                                <script type="text/html" template>
+                                    layui-v{{ layui.v }}
+                                </script>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>主要特色</td>
+                            <td>单页面 / 响应式 / 清爽 / 极简</td>
+                        </tr>
+                        <tr>
+                            <td>开发院校</td>
+                            <td style="padding-bottom: 0;">
+                                <div class="layui-btn-container">
+                                    <a  target="_blank" class="layui-btn">西安工程大学</a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <!--服务器监控展示开始-->
+                    <div class="layui-card" id="server">
+                        <div class="layui-card-header">服务器监控</div>
+                        <div class="layui-card-body layui-text"></div>
+
+                        <div class="layui-card-body">
+                            <div id="echarts-test">
+                                <div  style="width:800px;height: 400px;"></div>
+                            </div>
+                        </div>
+                    </div><!--服务器监控结束-->
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">文件系统</div>
+                <div class="layui-card-body" style="height: 420px;">
+                    <div class="layadmin-backlog">
+                        <div carousel-item>
+                            <ul class="layui-row layui-col-space10">
+                                <li class="layui-col-xs6" >
+                                    <a  class="layadmin-backlog-body" style="height: 120px">
+                                        <h3>文件总数</h3>
+                                        <p style="margin-top: 15px"><cite id="totalfile"></cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-xs6" >
+                                    <a  class="layadmin-backlog-body" style="height: 120px">
+                                        <h3>文件总大小</h3>
+                                        <p style="margin-top: 15px"><cite id="filesize"></cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-xs6">
+                                    <a  class="layadmin-backlog-body" style="height: 120px">
+                                        <h3>磁盘总空间</h3>
+                                        <p style="margin-top: 15px"><cite id="disksize"></cite></p>
+                                    </a>
+                                </li>
+                                <li class="layui-col-xs6">
+                                    <a  class="layadmin-backlog-body" style="height: 120px">
+                                        <h3>磁盘剩余空间</h3>
+                                        <p style="margin-top: 15px"><cite id="diskfree"></cite></p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <!--JVM监控开始-->
+                    <div class="layui-card">
+                        <div class="layui-card-header">JVM监控</div>
+                        <div class="layui-card-body">
+                            <div id="JVM_show" class="layui-form-item">
+                                <div style="width:750px;height: 500px;" class="layui-inline"></div>
+                                <div style="width:750px;height: 500px;" class="layui-inline"></div>
+                            </div>
+                        </div>
+                    </div><!--JVM监控-->
+                </div>
+
+                <div class="layui-col-md12">
+                    <!--Tomcat监控开始-->
+                    <div class="layui-card">
+                        <div class="layui-card-header">Tomcat监控</div>
+                        <div class="layui-card-body layui-text">
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="200">
+                                    <col>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td>CPU核心数</td>
+                                    <td>
+                                        <script type="text/html" template>
+                                            8核
+                                        </script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>应用已运行时间</td>
+                                    <td>
+                                        <script type="text/html" template>
+                                            1798.426
+                                        </script>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="layui-card-body">
+                            <div id="tomcat_show">
+                                <div  style="width:1400px;height: 550px;"></div>
+                            </div>
+                        </div>
+                    </div><!--Tomcat监控-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>
+<script>
+
+    layui.use(['echarts','admin','lovexian','baseSetting'], function() {
+        var $ = layui.jquery,
+            echarts = layui.echarts,
+            lovexian = layui.lovexian,
+            setter = layui.setter,
+            proPath = layui.baseSetting.LoveXianConfig.proApi;
+        var process_usage;
+
+
+        /*相关数据统计*/
+        $.ajax({
+            url:proPath+"/admin/sceneVideo/getcount",
+            headers: {
+                Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+            },
+            type :'get',
+            async : false,
+            dataType :'json',
+            success:function (res) {
+                $("#article").html(res.data.articleCount);
+                $("#image").html(res.data.imageCount);
+                $("#video").html(res.data.videoCount);
+                $("#audio").html(res.data.audioCount);
+            },
+            error:function () {
+
+            }
+        });
+
+        /*文件系统数据获取*/
+        $.ajax({
+            url:proPath+"/dfs/static/fileSys",
+            headers: {
+                Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+            },
+            type :'get',
+            async : false,
+            dataType :'json',
+            success:function (res) {
+                $("#totalfile").html(res.data.totalFileCount+"个");
+                $("#filesize").html(res.data.totalFileSize);
+                $("#disksize").html(res.data.diskTotalSize);
+                $("#diskfree").html(res.data.diskFreeSize);
+            },
+            error:function () {
+                
+            }
+        });
+
+
+        /*服务器监控信息获取*/
+        var serverInfo=["system.cpu.usage","process.cpu.usage"];
+        var servervalues=[];
+        var servervalue;
+        var i=0;
+        for(i=0;i<serverInfo.length;i++){
+            $.ajax({
+                url:proPath+"/actuator/metrics/"+serverInfo[i],
+                headers: {
+                    Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+                },
+                type :'get',
+                async : false,
+                dataType :'json',
+                success : function(res) {
+                    servervalue=res.measurements[0].value;
+                    servervalues.push(servervalue);
+                     if(servervalues.length==serverInfo.length){
+                        var echartsApp, options = {
+                                tooltip: {
+                                    formatter: "{a} <br/>{c} {b}"
+                                },
+                                toolbox: {
+                                    show: true,
+                                    feature: {
+                                        restore: {show: true},
+                                    }
+                                },
+                                series : [
+                                    {
+                                        name: 'cpu使用率',
+                                        type: 'gauge',
+                                        z: 3,
+                                        min: 0,
+                                        max: 100,
+                                        radius: '60%',
+                                        axisLine: {            // 坐标轴线
+                                            lineStyle: {       // 属性lineStyle控制线条样式
+                                                width: 10
+                                            }
+                                        },
+                                        axisTick: {            // 坐标轴小标记
+                                            length: 15,        // 属性length控制线长
+                                            lineStyle: {       // 属性lineStyle控制线条样式
+                                                color: 'auto'
+                                            }
+                                        },
+                                        splitLine: {           // 分隔线
+                                            length: 20,         // 属性length控制线长
+                                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                                color: 'auto'
+                                            }
+                                        },
+                                        axisLabel: {
+                                            backgroundColor: 'auto',
+                                            borderRadius: 2,
+                                            color: '#eee',
+                                            padding: 3,
+                                            textShadowBlur: 2,
+                                            textShadowOffsetX: 1,
+                                            textShadowOffsetY: 1,
+                                            textShadowColor: '#222',
+                                        },
+                                        title: {
+                                            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                            fontWeight: 'bolder',
+                                            fontSize: 20,
+                                            fontStyle: 'italic'
+                                        },
+                                        detail: {
+                                            fontWeight: 'bolder',
+                                            fontSize:25,
+                                            offsetCenter:[0,"70%"],
+                                            borderRadius: 3,
+                                            backgroundColor: '#444',
+                                            borderColor: '#aaa',
+                                            shadowBlur: 5,
+                                            shadowColor: '#333',
+                                            shadowOffsetX: 0,
+                                            shadowOffsetY: 3,
+                                            borderWidth: 2,
+                                            textBorderColor: '#000',
+                                            textBorderWidth: 2,
+                                            textShadowBlur: 2,
+                                            textShadowColor: '#fff',
+                                            textShadowOffsetX: 0,
+                                            textShadowOffsetY: 0,
+                                            fontFamily: 'Arial',
+                                            width: 100,
+                                            color: '#eee',
+                                            rich: {}
+                                        },
+                                        data: [{value: servervalues[0].toFixed(4), name: '%'}]
+                                    },
+                                    {
+                                        name: 'cpu占用率',
+                                        type: 'gauge',
+                                        center: ['20%', '55%'],    // 默认全局居中
+                                        radius: '45%',
+                                        min: 0,
+                                        max: 100,
+                                        endAngle: 30,
+                                        axisLine: {            // 坐标轴线
+                                            lineStyle: {       // 属性lineStyle控制线条样式
+                                                width: 8
+                                            }
+                                        },
+                                        axisTick: {            // 坐标轴小标记
+                                            length: 12,        // 属性length控制线长
+                                            lineStyle: {       // 属性lineStyle控制线条样式
+                                                color: 'auto'
+                                            }
+                                        },
+                                        splitLine: {           // 分隔线
+                                            length: 20,         // 属性length控制线长
+                                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                                color: 'auto'
+                                            }
+                                        },
+                                        pointer: {
+                                            width: 5
+                                        },
+                                        title: {
+                                            offsetCenter: [0, '-30%'],       // x, y，单位px
+                                        },
+                                        detail: {
+                                            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                            fontWeight: 'bolder',
+                                            offsetCenter:[0,"65%"],
+                                            fontSize:25,
+                                        },
+                                        data: [{value:servervalues[1].toFixed(4), name: '%'}]
+                                    },
+                                    {
+                                        name: 'cpu占用率',
+                                        type: 'gauge',
+                                        center: ['81%', '53.5%'],    // 默认全局居中
+                                        radius: '45%',
+                                        min: 0,
+                                        max: 100,
+                                        startAngle: 155,
+                                        axisLine: {            // 坐标轴线
+                                            lineStyle: {       // 属性lineStyle控制线条样式
+                                                width: 8
+                                            }
+                                        },
+                                        axisTick: {            // 坐标轴小标记
+                                            length: 12,        // 属性length控制线长
+                                            lineStyle: {       // 属性lineStyle控制线条样式
+                                                color: 'auto'
+                                            }
+                                        },
+                                        splitLine: {           // 分隔线
+                                            length: 20,         // 属性length控制线长
+                                            lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                                                color: 'auto'
+                                            }
+                                        },
+                                        pointer: {
+                                            width: 5
+                                        },
+                                        title: {
+                                            offsetCenter: [0, '-30%'],       // x, y，单位px
+                                        },
+                                        detail: {
+                                            // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                                            fontWeight: 'bolder',
+                                            offsetCenter:[0,"65%"],
+                                            fontSize:25,
+                                        },
+                                        data: [{value: servervalues[1].toFixed(4), name: '%'}]
+                                    },
+
+                                ]
+                            },
+                            elemDataView = $('#echarts-test').children('div');
+                        echartsApp = echarts.init(elemDataView[0], layui.echartsTheme);
+                        echartsApp.setOption(options,true);
+                    }
+                },
+                error : function(xhr, status, error) {
+
+                }
+            });
+        }
+
+
+
+        /*JVM监控*/
+        var JVMDataView = $('#JVM_show').children('div');
+        var that = this;
+        that.dpr=1;
+        var jvmInfos=['jvm.memory.max','jvm.memory.committed','jvm.memory.used','jvm.buffer.memory.used',
+        'jvm.gc.memory.allocated','jvm.gc.memory.promoted','jvm.gc.max.data.size','jvm.gc.live.data.size'];
+        var localData=[];
+        var jvmvalue;
+        var i=0;
+        for(i=0;i<jvmInfos.length;i++){
+            $.ajax({
+                url:proPath+"/actuator/metrics/"+jvmInfos[i],
+                headers: {
+                    Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+                },
+                type :'get',
+                async : false,
+                dataType :'json',
+                success:function (res) {
+                    jvmvalue=res.measurements[0].value;
+                    localData.push(jvmvalue/1048576);
+                    if(localData.length==jvmInfos.length){
+                        var JVM_option={
+                            title: {
+                                text: '单位：MB'
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    restore: {show: true},
+                                }
+                            },
+                            xAxis: {
+                                data: ['memory.max', 'memory.committed', 'memory.used', 'buffer.memory.used',
+                                    'gc.memory.allocated', 'gc.memory.promoted', 'gc.max.data.size','gc.max.data.size'],
+                                axisLabel: {    //重点在这一块，其余可以忽略
+                                    interval: 0,   //这个一定要有，别忘记了
+                                    rotate: 15,
+                                    textStyle: {
+                                        fontSize: 12
+                                    }
+                                }
+                            },
+                            yAxis: {
+//                                min:0,
+//                                max:
+//                                interval:1000,
+//                                type:'value',
+//                                axisLabel: {    //重点在这一块，其余可以忽略
+//                                    textStyle: {
+//                                        fontSize: 12
+//                                    }
+//                                }
+                            },
+                            series: [{
+                                type: 'bar',
+                                barWidth: 10*that.dpr,
+                                itemStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0,
+                                            0,
+                                            0,
+                                            1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+                                            [
+                                                { offset: 0, color: 'rgba(122,205,253)' },
+                                                { offset: 1, color: 'rgba(3,75,157 ,.8)' }
+                                            ] //数组, 用于配置颜色的渐变过程. 每一项为一个对象, 包含offset和color两个参数. offset的范围是0 ~ 1, 用于表示位置
+                                        ),
+                                        barBorderRadius: [0, 0, 0, 0]
+                                    }
+                                },
+                                data: localData
+                            },
+                                {
+                                    name: 'a',
+                                    tooltip: {
+                                        show: false
+                                    },
+
+                                    type: 'bar',
+                                    barWidth: 4*that.dpr,
+                                    itemStyle: {
+                                        normal: {
+                                            color: new echarts.graphic.LinearGradient(
+                                                0,
+                                                0,
+                                                0,
+                                                1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+                                                [
+                                                    { offset: 0, color: 'rgba(3,75,157 )' },
+                                                    { offset: 1, color: 'rgba(122,205,253,.8)' }
+                                                ] //数组, 用于配置颜色的渐变过程. 每一项为一个对象, 包含offset和color两个参数. offset的范围是0 ~ 1, 用于表示位置
+                                            ),
+                                            barBorderRadius: [0, 0, 0, 0]
+                                        }
+                                    },
+                                    data: localData,
+                                    barGap: 0,
+                                    legendHoverLink: false
+                                },
+                                {
+                                    name: 'b',
+                                    tooltip: {
+                                        show: false
+                                    },
+
+                                    type: 'pictorialBar',
+
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#73bbff'
+                                        }
+                                    },
+
+                                    symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAYAAABLLYUHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVCNEM4Qzc5RUIxMzExRTk5MkZCREEwN0FENzk5MTI2IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVCNEM4QzdBRUIxMzExRTk5MkZCREEwN0FENzk5MTI2Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NUI0QzhDNzdFQjEzMTFFOTkyRkJEQTA3QUQ3OTkxMjYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NUI0QzhDNzhFQjEzMTFFOTkyRkJEQTA3QUQ3OTkxMjYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7sPykLAAAALUlEQVR42mL4//8/AwgDgTwTiGRkZBQCUkpMQAYbkKELxEwgGS0gZgepAAgwADBtBsAg1UW4AAAAAElFTkSuQmCC',
+                                    symbolRotate: 0,
+                                    symbolSize: ['3', '3'],
+                                    symbolOffset: ['29', '0'],
+                                    symbolPosition: 'start',
+                                    data: localData,
+                                    z: 3
+                                },
+                                {
+                                    name: 'b',
+                                    tooltip: {
+                                        show: false
+                                    },
+
+                                    type: 'pictorialBar',
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#73bbff'
+                                        }
+                                    },
+                                    symbol: 'image://data:image/gif;base64,R0lGODlhDQAEAIABAGq+/wAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTZBRkJCREFFQjExMTFFOUI2RkFGRUM3MUU3MDYwRTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTZBRkJCREJFQjExMTFFOUI2RkFGRUM3MUU3MDYwRTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxNkFGQkJEOEVCMTExMUU5QjZGQUZFQzcxRTcwNjBFNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxNkFGQkJEOUVCMTExMUU5QjZGQUZFQzcxRTcwNjBFNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAANAAQAAAIKjIGpp82dHgQmFAA7',
+                                    symbolRotate: 0,
+                                    symbolSize: ['14', '3'],
+                                    symbolOffset: ['-0.3', '-1'],
+                                    symbolPosition: 'end',
+                                    data: localData,
+                                    z: 3
+                                }
+                            ]
+                        };
+                        echarts.init(JVMDataView[0], layui.echartsTheme).setOption(JVM_option,true);
+                    }
+                },
+                error:function (xhr, status, error) {
+
+                }
+            });
+        }
+
+
+        var localData2= [];
+        var jvmvalue2;
+        var jvmInfos2=['jvm.buffer.count','jvm.threads.daemon','jvm.threads.live','jvm.threads.peak'];
+        var j=0;
+        for(j=0;j<jvmInfos2.length;j++){
+            $.ajax({
+                url:proPath+"/actuator/metrics/"+jvmInfos2[j],
+                headers: {
+                    Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+                },
+                type :'get',
+                async : false,
+                dataType :'json',
+                success:function (res) {
+                    jvmvalue2=res.measurements[0].value;
+                    localData2.push(jvmvalue2);
+                    if(localData2.length==jvmInfos2.length){
+                        var JVM_option2={
+                            title: {
+                                text: '单位：个'
+                            },
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    restore: {show: true},
+                                }
+                            },
+
+                            xAxis: {
+                                data: ['buffer.count', 'threads.daemon', 'threads.live', 'threads.peak'],
+                                axisLabel: {    //重点在这一块，其余可以忽略
+                                    interval: 0,   //这个一定要有，别忘记了
+                                    rotate: 15,
+                                    textStyle: {
+                                        fontSize: 12
+                                    }
+                                }
+                            },
+                            yAxis: {},
+                            series: [{
+                                type: 'bar',
+                                barWidth: 10*that.dpr,
+                                itemStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(
+                                            0,
+                                            0,
+                                            0,
+                                            1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+                                            [
+                                                { offset: 0, color: 'rgba(122,205,253)' },
+                                                { offset: 1, color: 'rgba(3,75,157 ,.8)' }
+                                            ] //数组, 用于配置颜色的渐变过程. 每一项为一个对象, 包含offset和color两个参数. offset的范围是0 ~ 1, 用于表示位置
+                                        ),
+                                        barBorderRadius: [0, 0, 0, 0]
+                                    }
+                                },
+                                data: localData2
+                            },
+                                {
+                                    name: 'a',
+                                    tooltip: {
+                                        show: false
+                                    },
+                                    type: 'bar',
+                                    barWidth: 4*that.dpr,
+                                    itemStyle: {
+                                        normal: {
+                                            color: new echarts.graphic.LinearGradient(
+                                                0,
+                                                0,
+                                                0,
+                                                1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
+                                                [
+                                                    { offset: 0, color: 'rgba(3,75,157 )' },
+                                                    { offset: 1, color: 'rgba(122,205,253,.8)' }
+                                                ] //数组, 用于配置颜色的渐变过程. 每一项为一个对象, 包含offset和color两个参数. offset的范围是0 ~ 1, 用于表示位置
+                                            ),
+                                            barBorderRadius: [0, 0, 0, 0]
+                                        }
+                                    },
+                                    data: localData2,
+                                    barGap: 0,
+                                    legendHoverLink: false
+                                },
+                                {
+                                    name: 'b',
+                                    tooltip: {
+                                        show: false
+                                    },
+
+                                    type: 'pictorialBar',
+
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#73bbff'
+                                        }
+                                    },
+
+                                    symbol: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAYAAABLLYUHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVCNEM4Qzc5RUIxMzExRTk5MkZCREEwN0FENzk5MTI2IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVCNEM4QzdBRUIxMzExRTk5MkZCREEwN0FENzk5MTI2Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NUI0QzhDNzdFQjEzMTFFOTkyRkJEQTA3QUQ3OTkxMjYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NUI0QzhDNzhFQjEzMTFFOTkyRkJEQTA3QUQ3OTkxMjYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7sPykLAAAALUlEQVR42mL4//8/AwgDgTwTiGRkZBQCUkpMQAYbkKELxEwgGS0gZgepAAgwADBtBsAg1UW4AAAAAElFTkSuQmCC',
+                                    symbolRotate: 0,
+                                    symbolSize: ['3', '3'],
+                                    symbolOffset: ['29', '0'],
+                                    symbolPosition: 'start',
+                                    data: localData2,
+                                    z: 3
+                                },
+                                {
+                                    name: 'b',
+                                    tooltip: {
+                                        show: false
+                                    },
+
+                                    type: 'pictorialBar',
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#73bbff'
+                                        }
+                                    },
+                                    symbol: 'image://data:image/gif;base64,R0lGODlhDQAEAIABAGq+/wAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzggNzkuMTU5ODI0LCAyMDE2LzA5LzE0LTAxOjA5OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTZBRkJCREFFQjExMTFFOUI2RkFGRUM3MUU3MDYwRTUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTZBRkJCREJFQjExMTFFOUI2RkFGRUM3MUU3MDYwRTUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxNkFGQkJEOEVCMTExMUU5QjZGQUZFQzcxRTcwNjBFNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxNkFGQkJEOUVCMTExMUU5QjZGQUZFQzcxRTcwNjBFNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAEALAAAAAANAAQAAAIKjIGpp82dHgQmFAA7',
+                                    symbolRotate: 0,
+                                    symbolSize: ['14', '3'],
+                                    symbolOffset: ['-0.3', '-1'],
+                                    symbolPosition: 'end',
+                                    data: localData2,
+                                    z: 3
+                                }
+                            ]
+                        };
+                        echarts.init(JVMDataView[1], layui.echartsTheme).setOption(JVM_option2,true);
+                    }
+                },
+                error:function (xhr, status, error) {
+
+                }
+            });
+        }
+
+
+
+        /*
+        * Tomcat监控
+        * */
+        var tomcatInfos=['tomcat.sessions.created','tomcat.sessions.expired','tomcat.sessions.active.current',
+        'tomcat.sessions.active.max','tomcat.sessions.rejected','tomcat.global.error','tomcat.threads.current'];
+        var tomcatvalue;
+        var tomcatvalues=[];
+        var index=0;
+        for(index=0;index<tomcatInfos.length;index++){
+            $.ajax({
+                url:proPath+"/actuator/metrics/"+tomcatInfos[index],
+                headers: {
+                    Authentication :layui.data(setter.tableName)[setter.TOKENNAME]
+                },
+                type :'get',
+                async : false,
+                dataType :'json',
+                success:function (res) {
+                    tomcatvalue=res.measurements[0].value;
+                    tomcatvalues.push(tomcatvalue);
+                },
+                error:function () {
+
+                }
+            });
+        }
+
+        var data1 = [{
+            text: 'sessions.created',
+            value: tomcatvalues[0].toString(),
+            color: '#5dd054'
+        }, {
+            text: 'sessions.expired',
+            value: tomcatvalues[1].toString(),
+            color: '#097ff9'
+        }, {
+            text: 'sessions.active.current',
+            value: tomcatvalues[2].toString(),
+            color: '#6E55F1'
+        },{
+            text: 'sessions.active.max',
+            value: tomcatvalues[3].toString(),
+            color: '#ff6804'
+        },{
+            text: 'sessions.rejected',
+            value: tomcatvalues[4].toString(),
+            color: '#5dd054'
+        },{
+            text: 'global.error',
+            value: tomcatvalues[5].toString(),
+            color: '#097ff9'
+        },{
+            text: 'threads.current',
+            value: tomcatvalues[6].toString(),
+            color: '#6E55F1'
+        }];
+
+        function dataFormat(v = {
+            value: '12345,12',
+            color: '#5dd054'
+        }) {
+            return [{
+                value: 0,
+                name: v.value,
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#00feff'
+                            },
+                                {
+                                    offset: 1,
+                                    color: v.color
+                                }
+                            ]
+                        )
+                    }
+                },
+                label: {
+                    normal: {
+                        textStyle: {
+                            fontSize: 30,
+                            fontWeight: 500,
+                            color: '#4709f9'
+                        }
+                    }
+                }
+            }]
+        }
+
+        function childrenFun(str = '按钮') {
+            return [{
+                type: 'rect',
+                left: 'center',
+                top: 'center',
+                shape: {
+                    width: 150,
+                    height: 40,
+                    r: 20
+                },
+                style: {
+                    fill: '#4709f9',
+                    shadowColor:'#f909a1',
+                    shadowOffsetX:3,
+                    shadowOffsetY:3,
+                    lineWidth:2,
+                    shadowBlur:10
+                    //   stroke: '#00feff'
+                }
+            }, {
+                type: 'text',
+                left: 'center',
+                top: 'center',
+                style: {
+                    fill: '#fff',
+                    text: str,
+                    font: '14px Microsoft YaHei'
+                }
+            }]
+        }
+
+        var tomcat_option = {
+            title: {
+                text: 'Tomcat数据信息（单位：个）',
+                textStyle: {
+                    align: 'center',
+                    color: '#4709f9',
+                    fontSize: 20,
+                },
+                top: '10%',
+                left: '8%',
+            },
+//            backgroundColor:'#04184A',
+            legend: {
+                show: false
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    restore: {show: true},
+                }
+            },
+            series: [{
+                type: 'pie',
+                radius: [65, 73],
+                center: ['15%', '40%'],
+                hoverAnimation: false,
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        shadowColor: 'rgba(0, 0.3, 0.4, 0.8)',
+                        shadowBlur: 9,
+                    }
+                },
+                data: dataFormat(data1[0])
+            }, {
+                type: 'pie',
+                radius: [65, 73],
+                center: ['28%', '40%'],
+                hoverAnimation: false,
+                label: {
+                    normal: {
+                        position: 'center'
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        shadowColor: 'rgba(0, 0.3, 0.4, 0.8)',
+                        shadowBlur: 9,
+                    }
+                },
+                data: dataFormat(data1[1])
+            },
+                {
+                    type: 'pie',
+                    radius: [65, 73],
+                    center: ['41%', '40%'],
+                    hoverAnimation: false,
+                    label: {
+                        normal: {
+                            position: 'center'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowColor: 'rgba(0, 0.3, 0.4, 0.8)',
+                            shadowBlur: 9,
+                        }
+                    },
+                    data: dataFormat(data1[2])
+                },{
+                    type: 'pie',
+                    radius: [65, 73],
+                    center: ['54%', '40%'],
+                    hoverAnimation: false,
+                    label: {
+                        normal: {
+                            position: 'center'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowColor: 'rgba(0, 0.3, 0.4, 0.8)',
+                            shadowBlur: 9,
+                        }
+                    },
+                    data: dataFormat(data1[3])
+                },{
+                    type: 'pie',
+                    radius: [65, 73],
+                    center: ['67%', '40%'],
+                    hoverAnimation: false,
+                    label: {
+                        normal: {
+                            position: 'center'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowColor: 'rgba(0, 0.3, 0.4, 0.8)',
+                            shadowBlur: 9,
+                        }
+                    },
+                    data: dataFormat(data1[4])
+                },
+                {
+                    type: 'pie',
+                    radius: [65, 73],
+                    center: ['80%', '40%'],
+                    hoverAnimation: false,
+                    label: {
+                        normal: {
+                            position: 'center'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowColor: 'rgba(0, 0.3, 0.4, 0.8)',
+                            shadowBlur: 9,
+                        }
+                    },
+                    data: dataFormat(data1[5])
+                },
+                {
+                    type: 'pie',
+                    radius: [65, 73],
+                    center: ['93%', '40%'],
+                    hoverAnimation: false,
+                    label: {
+                        normal: {
+                            position: 'center'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowColor: 'rgba(0, 0.3, 0.4, 0.8)',
+                            shadowBlur: 9,
+                        }
+                    },
+                    data: dataFormat(data1[6])
+                }],
+            graphic: {
+                elements: [{
+                    type: 'group',
+                    left: '9.5%',
+                    bottom: '40%',
+                    z: 100,
+                    children: childrenFun(data1[0].text)
+                },
+                    {
+                        type: 'group',
+                        left: '22.5%',
+                        bottom: '40%',
+                        z: 100,
+                        children: childrenFun(data1[1].text)
+                    },
+
+                    {
+                        type: 'group',
+                        left: '35.5%',
+                        bottom: '40%',
+                        z: 100,
+                        children: childrenFun(data1[2].text)
+                    },
+                    {
+                        type: 'group',
+                        left: '48.5%',
+                        bottom: '40%',
+                        z: 100,
+                        children: childrenFun(data1[3].text)
+                    },
+                    {
+                        type: 'group',
+                        left: '61.5%',
+                        bottom: '40%',
+                        z: 100,
+                        children: childrenFun(data1[4].text)
+                    },
+                    {
+                        type: 'group',
+                        left: '74.5%',
+                        bottom: '40%',
+                        z: 100,
+                        children: childrenFun(data1[5].text)
+                    },
+                    {
+                        type: 'group',
+                        left: '87.5%',
+                        bottom: '40%',
+                        z: 100,
+                        children: childrenFun(data1[6].text)
+                    },
+
+                ]
+            }
+        };
+        var TomcatDataView = $('#tomcat_show').children('div');
+        echarts.init(TomcatDataView[0], layui.echartsTheme).setOption(tomcat_option,true);
+
+    });
+</script>

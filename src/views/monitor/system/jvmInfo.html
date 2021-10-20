@@ -1,0 +1,164 @@
+<style>
+    #lovexian-jvminfo table th, #lovexian-jvminfo table td {
+        height: 28px;
+        line-height: 28px;
+        padding: 9px 15px;
+        position: relative;
+        box-sizing: border-box;
+    }
+</style>
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-jvminfo" lay-title="JVM信息">
+    <div class="layui-row lovexian-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <span class="lovexian-alert-base lovexian-alert-success">
+                        数据获取时间 <strong id="time"></strong>
+                        &nbsp;&nbsp;
+                        <a id="refresh">点击刷新</a>
+                    </span>
+                    <div class="layui-form layui-border-box layui-table-view" lay-id="jvminfoTable">
+                        <div class="layui-table-box">
+                            <table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-skin="line">
+                                <tr>
+                                    <th>参数</th>
+                                    <th>描述</th>
+                                    <th>当前值</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-purple">
+                                        jvm.memory.max
+                                    </span>
+                                    </td>
+                                    <td>JVM 最大内存</td>
+                                    <td id="jvmmemorymax"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-purple">
+                                        jvm.memory.committed
+                                    </span>
+                                    </td>
+                                    <td>JVM 可用内存</td>
+                                    <td id="jvmmemorycommitted"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-purple">
+                                        jvm.memory.used
+                                    </span>
+                                    </td>
+                                    <td>JVM 已用内存</td>
+                                    <td id="jvmmemoryused"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-cyan">
+                                        jvm.buffer.memory.used
+                                    </span>
+                                    </td>
+                                    <td>JVM 缓冲区已用内存</td>
+                                    <td id="jvmbuffermemoryused"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-cyan">
+                                        jvm.buffer.count
+                                    </span>
+                                    </td>
+                                    <td>当前缓冲区数量</td>
+                                    <td id="jvmbuffercount"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-green">
+                                        jvm.threads.daemon
+                                    </span>
+                                    </td>
+                                    <td>JVM 守护线程数量</td>
+                                    <td id="jvmthreadsdaemon"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-green">
+                                        jvm.threads.live
+                                    </span>
+                                    </td>
+                                    <td>JVM 当前活跃线程数量</td>
+                                    <td id="jvmthreadslive"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-green">
+                                        jvm.threads.peak
+                                    </span>
+                                    </td>
+                                    <td>JVM 峰值线程数量</td>
+                                    <td id="jvmthreadspeak"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-red">
+                                        jvm.gc.memory.allocated
+                                    </span>
+                                    </td>
+                                    <td>GC 时, 年轻代分配的内存空间</td>
+                                    <td id="jvmgcmemoryallocated"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-red">
+                                        jvm.gc.memory.promoted
+                                    </span>
+                                    </td>
+                                    <td>GC 时, 老年代分配的内存空间</td>
+                                    <td id="jvmgcmemorypromoted"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-red">
+                                        jvm.gc.max.data.size
+                                    </span>
+                                    </td>
+                                    <td>GC 时, 老年代的最大内存空间</td>
+                                    <td id="jvmgcmaxdatasize"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-red">
+                                        jvm.gc.live.data.size
+                                    </span>
+                                    </td>
+                                    <td>FullGC 时, 老年代的内存空间</td>
+                                    <td id="jvmgclivedatasize"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-blue">
+                                        jvm.classes.loaded
+                                    </span>
+                                    </td>
+                                    <td>JVM 已加载 Class 数量</td>
+                                    <td id="jvmclassesloaded"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-blue">
+                                        jvm.classes.unloaded
+                                    </span>
+                                    </td>
+                                    <td>JVM 未加载 Class 数量</td>
+                                    <td id="jvmclassesunloaded"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use('monitor/system/jvmInfo', layui.factory('monitor/system/jvmInfo'));
+</script>

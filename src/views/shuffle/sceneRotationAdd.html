@@ -1,0 +1,35 @@
+<style>
+    /*图片*/
+    #Images li{ width:19%; margin:0.5% 0.5%; float: left; overflow:hidden;}
+    #Images li img{ height: 210px;width:100%; cursor:pointer; }
+    #Images li .operate{ display: block; height: 40px; width:100%; background:#fff;}
+    #Images li .operate .check{ float:left; margin-left:11px; height:18px;position:relative;}
+    #Images li .operate .check .layui-form-checkbox[lay-skin=primary]{ width:100%;}
+    #Images li .operate .check .layui-form-checkbox[lay-skin=primary] span{ padding:0 5px 0 25px; width:100%; box-sizing:border-box;}
+    #Images li .operate .check .layui-form-checkbox[lay-skin=primary] i{position:absolute; left:0; top:0;}
+    #Images li .operate .img_del{ float:right; margin:9px 11px 0 0; font-size: 22px !important; cursor:pointer; }
+    #Images li .operate .img_del:hover{ color:#f00; }
+</style>
+<script type="text/html" template >
+    <input type="text" id="sceneId" class="hidden" style="display:none;" value="{{d.params.sceneId}}"/>
+</script>
+<form class="layui-form" id="sceneImages" lay-filter="sceneImages">
+    <blockquote class="layui-elem-quote news_search" style="background-color: white">
+        <div class="layui-inline">
+            <input type="checkbox" name="selectAll" id="selectAll" lay-filter="selectAll" lay-skin="primary" title="全选">
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-sm layui-btn-danger batchDel">批量删除</a>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-sm uploadNewImg">上传新图片</a>
+        </div>
+        <div class="layui-inline">
+            <select name="chartType" class="chartType" lay-filter="chart-type">
+                <option value="1">图片</option>
+                <option value="2">广告</option>
+            </select>
+        </div>
+    </blockquote>
+    <ul class="layer-photos-demo" id="Images"></ul>
+</form>

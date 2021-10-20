@@ -1,0 +1,131 @@
+<!-- 高德地图-->
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=52b9b9c0a9b83a1e88a2104012c12a2d&plugin=AMap.ArrivalRange,AMap.Scale,AMap.Geocoder,AMap.Transfer,AMap.Autocomplete,AMap.PlaceSearch"></script>
+<style>
+    /*面板控制样式*/
+    .control-panel {
+        position: relative;
+        top: 100px;
+        left: 300px;
+    }
+    /*面板内容样式*/
+    .control-entry {
+        width: 290px;
+        background-color: rgba(119, 136, 153, 0.8);
+        font-family: fantasy, sans-serif;
+        text-align: left;
+        color: white;
+        overflow:hidden;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    /*文字与右侧的距离*/
+    .control-input {
+        margin-left: 120px;
+    }
+    /*输入框宽度*/
+    .control-input input[type="text"] {
+        width: 160px;
+    }
+    /*文字样式*/
+    .control-panel label {
+        float: left;
+        width: 120px;
+    }
+</style>
+显示输入地址面板
+<div class="control-panel" style="z-index: 19950928;position: fixed;">
+    <div class="control-entry">
+        <label>查询地点：</label>
+        <div class="control-input">
+            <input id="sence-location" type="text">
+        </div>
+    </div>
+    <div id="searchRes" style="background-color: white"></div>
+</div>
+
+<div class="layui-fluid layui-anim febs-anim" id="sence-map" lay-title="高德地图">
+    <div class="layui-row febs-container">
+        <div class="layui-card">
+            <div style="padding: .1rem;">
+                <div id="container" class="map" style="padding-bottom: -100px;height: 520px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    setTimeout(function(){
+        layui.use(['jquery', 'lovexian'], function () {
+            var $ = layui.jquery,
+                lovexian = layui.lovexian,
+                $view = $('#sence-map');
+            $view.find('#container').css({"height": document.documentElement.clientHeight - 97 + 'px'});
+            var map = new AMap.Map("container", {
+                resizeEnable: true,
+                zoom: 14 //初始地图级别
+            });
+            var placeSearch = new AMap.PlaceSearch();  //构造地点查询类
+            var senceAddress,senceMarker;
+            //地址自动补全对象
+            var auto = new AMap.Autocomplete({
+                //根据id指定输入内容
+                input: "sence-location",
+                output: "searchRes"
+            });
+            //添加事件监听，在选择完地址以后调用senceLocationSelected
+            AMap.event.addListener(auto, "select", senceLocationSelected);
+            //选择地点后触发的方法
+            function senceLocationSelected(e) {
+                //更新地点
+                senceAddress = e.poi.name;
+                loadSenceLocation();
+            }
+            function loadSenceLocation() {
+                delLocation();
+                //创建地址坐标对象
+                var geocoder = new AMap.Geocoder({
+                    city: "西安",
+                    radius: 1000
+                });
+                //获取位置
+                geocoder.getLocation(senceAddress, function(status, result) {
+                    if (status === "complete" && result.info === 'OK') {
+                        var geocode = result.geocodes[0];   //获取地址编码
+                        x = geocode.location.getLng();      //经度
+                        y = geocode.location.getLat();      //纬度
+                        parent.layui.$("input[name='longitude']").val(x);
+                        parent.layui.$("input[name='latitude']").val(y);
+                        //加载工作地点标记
+                        loadMarker(x, y);
+                        //地图移动到工作地点的位置
+                        map.setZoomAndCenter(14, [x, y]);
+                    }
+                })
+            }
+            //加载工作地点标记
+            function loadMarker(x, y, locationName) {
+                senceMarker = new AMap.Marker({
+                    map: map,
+                    title: locationName,
+                    icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_r.png',
+                    position: [x, y]
+                });
+            }
+            //清除已有的到达区域
+            function delLocation() {
+                if (senceMarker) map.remove(senceMarker);
+            }
+            function currentLocationInfo() {
+                map.getCity(function (info) {
+                    lovexian.alert.success('当前位置：' + info.province + '，' + info.city + '，' + info.district + '，区号：' + info.citycode);
+                });
+            }
+            currentLocationInfo();
+            //为地图注册click事件获取鼠标点击出的经纬度坐标
+            map.on('click', function (e) {
+                lovexian.alert.success('经度：' + e.lnglat.getLng() + '，纬度：' + e.lnglat.getLat());
+                parent.layui.$("input[name='placeLongitude']").val(e.lnglat.getLng());
+                parent.layui.$("input[name='placeLatitude']").val(e.lnglat.getLat());
+            });
+        });
+    },500)
+</script>

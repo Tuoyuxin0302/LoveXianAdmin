@@ -1,0 +1,74 @@
+<style>
+    #lovexian-server-info table th, #lovexian-server-info table td {
+        height: 28px;
+        line-height: 28px;
+        padding: 9px 15px;
+        position: relative;
+        box-sizing: border-box;
+    }
+</style>
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-server-info" lay-title="服务器信息">
+    <div class="layui-row lovexian-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <span class="lovexian-alert-base lovexian-alert-success">
+                        数据获取时间 <strong id="time"></strong>
+                        &nbsp;&nbsp;
+                        <a id="refresh">点击刷新</a>
+                    </span>
+                    <div class="layui-form layui-border-box layui-table-view" lay-id="tomcat-infoTable">
+                        <div class="layui-table-box">
+                            <table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-skin="line">
+                                <tr>
+                                    <th>参数</th>
+                                    <th>描述</th>
+                                    <th>当前值</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-green">
+                                        system.cpu.count
+                                    </span>
+                                    </td>
+                                    <td>CPU核心数</td>
+                                    <td id="systemcpucount"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-green">
+                                        system.cpu.usage
+                                    </span>
+                                    </td>
+                                    <td>服务器CPU使用率</td>
+                                    <td id="systemcpuusage"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-purple">
+                                        process.uptime
+                                    </span>
+                                    </td>
+                                    <td>应用已运行时间</td>
+                                    <td id="processuptime"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    <span class="layui-badge lovexian-tag-purple">
+                                        process.cpu.usage
+                                    </span>
+                                    </td>
+                                    <td>应用CPU占用率</td>
+                                    <td id="processcpuusage"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use('monitor/system/serverInfo', layui.factory('monitor/system/serverInfo'));
+</script>

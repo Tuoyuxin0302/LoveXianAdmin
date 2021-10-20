@@ -1,0 +1,12 @@
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-druid" lay-title="Swagger文档">
+    <div class="layui-row lovexian-container">
+        <iframe id="container" src="http://127.0.0.1:9090/druid" frameborder="no" style="width: 100%;" scrolling="auto" />
+    </div>
+</div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['jquery'], function () {
+        var $ = layui.jquery,
+            $view = $('#lovexian-druid');
+        $view.find('#container').css({"height": document.documentElement.clientHeight - 97 + 'px'});
+    });
+</script>

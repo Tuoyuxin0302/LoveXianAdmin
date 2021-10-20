@@ -1,0 +1,131 @@
+<style>
+    .delquery {   /*清除图标*/
+        background-position: 0 -320px;
+        cursor: pointer;
+        height: 20px;
+        margin: 4px 0px 0 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 20px;
+    }
+</style>
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-menu" lay-title="菜单管理">
+    <div class="layui-row layui-col-space8 lovexian-container">
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <form class="layui-form layui-table-form" lay-filter="menu-table-form" id="menu-table-form">
+                        <div class="layui-row">
+                            <div class="layui-col-md8 layui-col-sm9 layui-col-xs9">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">菜单名称</label>
+                                        <div class="layui-input-inline lovexian-hide">
+                                            <input type="text" name="menuName" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md4 layui-col-sm12 layui-col-xs12 table-action-area">
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action lovexian-hide" id="query">
+                                    <i class="layui-icon">&#xe848;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action" id="reset">
+                                    <i class="layui-icon">&#xe79b;</i>
+                                </div>
+
+                                <span id="actionMoreContainer">
+
+                                </span>
+
+                            </div>
+                        </div>
+                    </form>
+                    <div class="eleTree menuTree" lay-filter="menuTree" style="margin-left: 1rem"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header" id="form-header">新增菜单</div>
+                <div class="layui-card-body lovexian-table-full">
+                    <form class="layui-form layui-table-form" action="" lay-filter="menu-form">
+                        <div class="layui-form-item lovexian-hide">
+                            <label class="layui-form-label lovexian-form-item-require">ID：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="menuId" readonly class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">上级ID：</label>
+                            <div class="layui-input-block">
+                                <input type="text" value="" name="parentId" readonly class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label lovexian-form-item-require">名称：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="menuName" autocomplete="off" class="layui-input"
+                                       minlength="2" maxlength="10" lay-verify="range">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label lovexian-form-item-require">类型：</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="menuType" lay-filter="menu-type" value="0" title="菜单" checked="">
+                                <input type="radio" name="menuType" lay-filter="menu-type" value="1" title="按钮">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">图标：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="icon" autocomplete="off" class="layui-input"
+                                       maxlength="50" lay-verify="range">
+                                <span title="清空" class="delquery" id="clear" style="display: none;">x</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">URL：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="menuPath" autocomplete="off" class="layui-input"
+                                       maxlength="50" lay-verify="range">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">权限：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="perms" autocomplete="off" class="layui-input"
+                                       maxlength="50" lay-verify="range">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="orderNum" autocomplete="off" class="layui-input"
+                                       lay-verify="number">
+                            </div>
+                        </div>
+                        <button type="reset" class="layui-btn lovexian-hide" id="reset-form"></button>
+                        <button class="layui-btn lovexian-hide" lay-submit="" lay-filter="menu-form-submit"
+                                id="submit-form"></button>
+                    </form>
+                </div>
+                <div class="layui-card-footer">
+                    <button class="layui-btn" id="submit">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="actionMoreTpl">
+    {{# if(hasAnyPermission(['menu:add','menu:delete','menu:export'])) { }}
+    <div class="layui-btn layui-btn-sm layui-btn-primary table-action action-more">
+        <i class="layui-icon">&#xe875;</i>
+    </div>
+    {{# } }}
+</script>
+<script>
+    layui.use('systemadmin/menu', layui.factory('systemadmin/menu'));
+</script>

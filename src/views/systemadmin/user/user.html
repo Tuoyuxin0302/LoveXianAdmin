@@ -1,0 +1,285 @@
+<style>
+    #lovexian-user-detail #user-img, #lovexian-user-detail .user-info {
+        display: inline-block;
+        float: left;
+        margin-left: 15px;
+    }
+
+    #lovexian-user-detail #user-img img {
+        width: 7rem;
+        margin: 10px 10px 0 20px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    #lovexian-user-detail #user-info-wrapper {
+        margin: 0 0 1rem 0;
+        display: inline-block;
+    }
+
+    #lovexian-user-detail .user-info div {
+        margin: 10px 15px;
+        max-width: 19rem;
+    }
+
+    #lovexian-user-detail #options-wrapper a {
+        padding: 4px 6px;
+        color: rgba(0, 0, 0, 0.65);
+        border: 1px solid #d9d9d9;
+        border-radius: 2px;
+    }
+
+    #lovexian-user-detail #options-wrapper a:hover {
+        color: #40a9ff;
+        border-color: #40a9ff;
+    }
+
+    #user-update {
+        padding: 20px 25px 25px 0;
+    }
+
+    #user-update .layui-treeSelect .ztree li a, .ztree li span {
+        margin: 0 0 2px 3px !important;
+    }
+</style>
+
+<!--用户详情-->
+<div class="layui-fluid" id="lovexian-user-detail" lay-title="个人信息" style="display: none;">
+    <div id="user-info-wrapper">
+        <div id="user-img">
+            <img alt="头像" title="点我更换头像" id="avatar">
+        </div>
+        <div class="user-info">
+            <div><span class="layui-icon layui-icon-user"></span> 账号：
+                <span id="username"></span>
+            </div>
+            <div><span class="layui-icon layui-icon-trophy"></span> 角色：
+                <span id="roles"></span>
+            </div>
+            <div><span class="layui-icon layui-icon-home"></span> 部门：
+                <span id="deptname"></span>
+            </div>
+            <div><span class="layui-icon layui-icon-skin"></span> 性别：
+                <span id="sex"></span>
+            </div>
+        </div>
+        <div class="user-info">
+            <div><span class="layui-icon layui-icon-phone"></span> 电话：
+                <span id="mobile"></span>
+            </div>
+            <div><span class="layui-icon layui-icon-mail"></span> 邮箱：
+                <span id="email"></span>
+            </div>
+            <div><span class="layui-icon layui-icon-time-circle"></span> 最后登录时间：
+                <span id="lastLoginTime"></span>
+            </div>
+            <div><span class="layui-icon layui-icon-read"></span> 个人简介：
+                <span id="description"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--编辑用户-->
+<div class="layui-fluid" id="user-update" style="display: none;">
+    <form class="layui-form" action="" lay-filter="user-update-form">
+        <div class="layui-form-item lovexian-hide">
+            <label class="layui-form-label lovexian-form-item-require">用户id：</label>
+            <div class="layui-input-block">
+                <input type="text" name="userId">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">用户名：</label>
+            <div class="layui-input-block">
+                <input type="text" name="username" minlength="4" maxlength="10" data-th-id="${user.userId}"
+                       lay-verify="range|username" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机：</label>
+            <div class="layui-input-block">
+                <input type="tel" name="mobile" lay-verify="phone" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱：</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" lay-verify="email" maxlength="50" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">角色：</label>
+            <div class="layui-input-block">
+                <select name="roleId"
+                        lay-verify="required"
+                        xm-select-direction="down"
+                        xm-select="user-update-role"
+                        xm-select-skin="default">
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">部门：</label>
+            <div class="layui-input-block">
+                <input type="text" name="deptId" id="user-update-dept" lay-filter="user-update-dept"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">状态：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="lockStatus" value="1" title="有效">
+                <input type="radio" name="lockStatus" value="0" title="禁用">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label lovexian-form-item-require">性别：</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="0" title="男性">
+                <input type="radio" name="sex" value="1" title="女性">
+                <input type="radio" name="sex" value="2" title="保密">
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注：</label>
+            <div class="layui-input-block">
+                <textarea name="description" maxlength="100" class="layui-textarea">
+                </textarea>
+            </div>
+        </div>
+        <div class="layui-form-item lovexian-hide">
+            <button class="layui-btn" lay-submit="" lay-filter="user-update-form-submit" id="submit"></button>
+        </div>
+    </form>
+</div>
+<!--编辑用户结束-->
+
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-admin" lay-title="用户管理">
+    <div class="layui-row lovexian-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <form class="layui-form layui-table-form" lay-filter="user-table-form">
+                        <div class="layui-row">
+                            <div class="layui-col-md10">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">用户名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="username" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">创建时间</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="createTime" id="createTime" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">状态</label>
+                                        <div class="layui-input-inline">
+                                            <select name="status">
+                                                <option value=""></option>
+                                                <option value="0">禁用</option>
+                                                <option value="1">有效</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">手机</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="mobile" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">部门</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="dept" id="dept" lay-filter="dept"
+                                                   class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">性别</label>
+                                        <div class="layui-input-inline">
+                                            <select name="sex">
+                                                <option value=""></option>
+                                                <option value="0">男</option>
+                                                <option value="1">女</option>
+                                                <option value="2">保密</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md2 layui-col-sm12 layui-col-xs12 table-action-area">
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action" id="query" title="搜索">
+                                    <i class="layui-icon">&#xe615;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action" id="reset" title="重置">
+                                    <i class="layui-icon">&#xe669;</i>
+                                </div>
+                                <span id="actionMoreContainer">
+
+                                </span>
+
+                            </div>
+                        </div>
+                    </form>
+                    <table lay-filter="userTable" lay-data="{id: 'userTable'}">
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="user-status">
+    {{#
+        var status = {
+        1: {title: '有效', color: 'green'},
+        0: {title: '禁用', color: 'volcano'}
+        }[d.lockStatus];
+
+    }}
+    <span class="layui-badge lovexian-tag-{{ status.color}}">{{ status.title }}</span>
+</script>
+
+<script type="text/html" id="actionMoreTpl">
+    {{# if(hasAnyPermission(['ser:add','user:update','user:password:reset','user:export'])) { }}
+        <div class="layui-btn layui-btn-sm layui-btn-primary table-action action-more">
+            <i class="layui-icon">&#xe875;</i>
+        </div>
+    {{# } }}
+</script>
+<script type="text/html" id="user-sex">
+    {{#
+        var sex = {
+        2: {title: '保密'},
+        1: {title: '女'},
+        0: {title: '男'}
+        }[d.sex];
+    }}
+    <span>{{ sex.title }}</span>
+</script>
+<script type="text/html" id="user-option">
+    {{# if(hasPermission(['user:view'])) { }}
+        <a lay-event="detail" title="查看详情"><i class="layui-icon lovexian-edit-area lovexian-green">&#xe7a5;</i></a>
+    {{# } }}
+    {{# if(hasPermission(['user:update'])) { }}
+        <a lay-event="edit" title=" 编辑"><i class="layui-icon lovexian-edit-area lovexian-blue">&#xe642;</i></a>
+    {{# } }}
+    {{# if(hasPermission(['user:delete'])) { }}
+        <a lay-event="del" title="删除"><i class="layui-icon lovexian-edit-area lovexian-red">&#xe640;</i></a>
+    {{# } }}
+
+    {{# if(lacksPermission(['user:view','user:update','user:delete'])) { }}
+        <span>
+            <span class="layui-badge-dot lovexian-bg-orange"></span> 无权限
+        </span>
+    {{# } }}
+</script>
+<script>
+    layui.use('systemadmin/user', layui.factory('systemadmin/user'));
+</script>

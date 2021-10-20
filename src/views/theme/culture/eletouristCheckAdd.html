@@ -1,0 +1,89 @@
+
+<form class="layui-form layui-row layui-col-space10 layui-bg-white placeForm" style="display: none" lay-filter="placeForm" id="placeForm">
+    <input type="text" class="hidden" lay-verify="id" name="id">
+    <div class="layui-col-md9 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md9 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">地点名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input placeName" name="placeName" placeholder="请输入文章标题" readonly="readonly">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input placeAddress" name="placeAddress" placeholder="请输入地址" readonly="readonly">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">经度</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input placeLongitude" name="placeLongitude" placeholder="请输入经度" readonly="readonly">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">纬度</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input placeLatitude" name="placeLatitude" placeholder="请输入纬度" readonly="readonly">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">开放时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input openTime" name="openTime" placeholder="请输入开放时间" readonly="readonly">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">简介</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入英文简介" class="layui-textarea englishIntroduce" name="englishIntroduce" readonly="readonly"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">官网地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input website" name="website" readonly="readonly">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3 layui-col-xs5">
+                <div class="layui-upload-list thumbBox mag0 magt4">
+                    <img class="layui-upload-img thumbImg">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">详细内容</label>
+            <div class="layui-input-block">
+				<textarea name="content" class="layui-textarea" lay-verify="content" id="content" readonly="readonly">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3 layui-col-xs12">
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 审核</blockquote>
+        <div class="border category">
+            <div class="layui-form-item checkState">
+                <label class="layui-form-label">审核:</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="placeCheck" value="1" title="审核通过" lay-filter="checkState" checked>
+                    <input type="radio" name="placeCheck" value="2" title="审核拒绝" lay-filter="checkState">
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide releaseData">
+                <label class="layui-form-label lovexian-form-item-require">拒绝原因</label>
+                <div class="layui-input-block ">
+                    <input type="text" class="layui-input" id="refuseReason" placeholder="请填写拒绝原因" />
+                </div>
+            </div>
+            <a  id="saveBtn" class="layui-btn layui-btn-sm" lay-filter="addCheck" lay-submit><i class="layui-icon">&#xe655;</i>提交</a>
+            <a class="layui-btn layui-btn-primary layui-btn-sm" lay-filter="exit" lay-submit>取消</a>
+        </div>
+    </div>
+</form>
+
+<script>
+    // layui.use('theme/culture/placeAdd', layui.factory('theme/culture/placeAdd'));
+</script>

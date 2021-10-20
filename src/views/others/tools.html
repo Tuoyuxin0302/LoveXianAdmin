@@ -1,0 +1,161 @@
+<style>
+    #lovexian-tools .layui-card-header {
+        font-weight: 600;
+    }
+
+    #lovexian-tools p {
+        margin-bottom: 10px
+    }
+</style>
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-tools" lay-title="lovexian工具">
+    <div class="layui-row layui-col-space8 lovexian-container">
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">弹出层</div>
+                <div class="layui-card-body">
+                    <p>lovexian.modal.info / warn / success / error()，使用 layer.alert()
+                        实现，参数与官网一致。</p>
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-normal" id="modal-info">信息</button>
+                        <button class="layui-btn layui-btn-warm" id="modal-warn">警告</button>
+                        <button class="layui-btn layui-btn-success" id="modal-success">成功</button>
+                        <button class="layui-btn layui-btn-danger" id="modal-error">错误</button>
+                        <button class="layui-btn layui-btn-normal" id="modal-confirm">confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">提示层</div>
+                <div class="layui-card-body">
+                    <p>lovexian.alert.info / warn / success / error()，使用 layer.alert()
+                        实现，参数与官网一致。</p>
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-normal" id="alert-info">信息</button>
+                        <button class="layui-btn layui-btn-warm" id="alert-warn">警告</button>
+                        <button class="layui-btn layui-btn-success" id="alert-success">成功</button>
+                        <button class="layui-btn layui-btn-danger" id="alert-error">错误</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">Tab操作</div>
+                <div class="layui-card-body">
+                    <p>刷新当前Tab页面：<a id="refresh-tab">点击刷新</a></p>
+                    <pre class="layui-code" lay-title="JavaScript" lay-encode="true">
+// html
+<a id="refresh_tab">点击刷新</a>
+// js
+$('#refresh_tab').on('click', function () {
+    layui.index.render();
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">路由Router操作</div>
+                <div class="layui-card-body">
+                    <p>获取当前路由地址：<a id="get_href">点击获取</a></p>
+                    <pre class="layui-code" lay-title="JavaScript">
+var url = lovexian.route.href;
+                    </pre>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">LoadBar</div>
+                <div class="layui-card-body">
+                    <p>点击查看效果：</p>
+                    <button class="layui-btn layui-btn-normal" id="load-start">开始 Start</button>
+                    <button class="layui-btn layui-btn-normal" id="load-finish">结束 Finish</button>
+                    <button class="layui-btn layui-btn-danger" id="load-error">错误 Error</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 50px;"></div>
+<script data-th-inline="javascript" type="text/javascript">
+    layui.use(['lovexian', 'code','loadBar'], function () {
+        var $ = layui.jquery,
+            loadBar = layui.loadBar,
+            lovexian = layui.lovexian,
+            $view = $("#lovexian-tools");
+
+        layui.code();
+        // ------------ 弹出层 ------------------------
+        $view.find('#modal-info').on('click', function () {
+            lovexian.modal.info('请输入标题', '请输入内容', function () {
+                lovexian.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-warn').on('click', function () {
+            lovexian.modal.warn('请输入标题', '请输入内容', function () {
+                lovexian.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-success').on('click', function () {
+            lovexian.modal.success('请输入标题', '请输入内容', function () {
+                lovexian.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-error').on('click', function () {
+            lovexian.modal.error('请输入标题', '请输入内容', function () {
+                lovexian.alert.info("确定按钮回调");
+            });
+        });
+        $view.find('#modal-confirm').on('click', function () {
+            lovexian.modal.confirm('请输入标题', '请输入内容', function () {
+                lovexian.alert.info("确定按钮回调");
+            }, function () {
+                lovexian.alert.info("取消按钮回调");
+            });
+        });
+
+        // ------------------- 提示层 ---------------------
+        $view.find('#alert-info').on('click', function () {
+            lovexian.alert.info("提示信息");
+        });
+        $view.find('#alert-warn').on('click', function () {
+            lovexian.alert.warn("告警信息");
+        });
+        $view.find('#alert-success').on('click', function () {
+            lovexian.alert.success("成功信息");
+        });
+        $view.find('#alert-error').on('click', function () {
+            lovexian.alert.error("错误信息");
+        });
+
+        //  ------------------- tab操作 ---------------------------
+        $view.find('a#refresh-tab').on('click', function () {
+            layui.index.render();
+            lovexian.alert.success('刷新完毕')
+        });
+
+        $view.find('a#get_href').on('click', function () {
+            var url = lovexian.route.href;
+         lovexian.alert.success(url);
+        });
+
+        // -------------- LoadBar --------------------------------
+        $view.find('#load-start').on('click', function () {
+            loadBar.start();
+        });
+        $view.find('#load-finish').on('click', function () {
+            loadBar.finish();
+        });
+        $view.find('#load-error').on('click', function () {
+            loadBar.start();
+            setTimeout(function () {
+                loadBar.error();
+            }, 1000);
+        });
+    });
+</script>

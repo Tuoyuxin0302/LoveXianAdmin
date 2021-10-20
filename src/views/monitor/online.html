@@ -1,0 +1,73 @@
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-online" lay-title="在线用户">
+    <div class="layui-row lovexian-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <form class="layui-form layui-table-form" lay-filter="online-table-form">
+                        <div class="layui-row">
+                            <div class="layui-col-md11">
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">用户名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="username" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md1 table-action-area">
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action" id="query">
+                                    <i class="layui-icon">&#xe848;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action" id="reset">
+                                    <i class="layui-icon">&#xe79b;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="lovexian-hide">
+                        <span class="lovexian-alert-base lovexian-alert-success" id="count"></span>
+                    </div>
+                    <table lay-filter="onlineTable" lay-data="{id: 'onlineTable'}"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="online-username">
+    <div>
+        {{d.username}}
+        {{#
+        if (d.current) {
+        }}
+        <span class="layui-badge lovexian-tag-red">current</span>
+        {{#
+        }
+        }}
+    </div>
+</script>
+<script type="text/html" id="online-status">
+    {{#
+    var status = {
+    1: {title: '在线', color: 'green'},
+    0: {title: '离线', color: 'volcano'}
+    }[d.status];
+    }}
+    <span class="layui-badge lovexian-tag-{{status.color}}">{{ status.title }}</span>
+</script>
+<script type="text/html" id="user-option">
+
+</script>
+<script type="text/html" id="online-option">
+    {{# if(lacksPermission(['user:kickout'])) { }}
+        <span >
+            <span class="layui-badge-dot lovexian-bg-orange"></span> 无权限
+        </span>
+    {{# } }}
+    {{# if(hasPermission(['user:kickout'])) { }}
+        <a lay-event="del"><i class="layui-icon lovexian-edit-area lovexian-red">&#xe7a1;</i></a>
+    {{# } }}
+</script>
+<script>
+    layui.use('monitor/online', layui.factory('monitor/online'));
+</script>

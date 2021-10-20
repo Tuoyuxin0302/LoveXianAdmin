@@ -1,0 +1,9 @@
+body .layui-layer-hong .layui-layer-title{
+    background-color: #f40b0b;
+    color: white;
+}
+body .layui-layer-hong .layui-layer-btn a{
+    border-color: brown;
+    background-color: #f40b0b;
+    color: white;
+}

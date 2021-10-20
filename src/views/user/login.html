@@ -1,0 +1,206 @@
+<script type="text/html" template>
+  <link
+    rel="stylesheet"
+    href="{{ layui.setter.base }}style/login.css?v={{ layui.admin.v }}-1"
+    media="all"
+  />
+  <link
+    rel="stylesheet"
+    href="{{ layui.setter.base }}style/login-style.css?v={{ layui.admin.v }}-1"
+    media="all"
+  />
+</script>
+
+<div
+  class="layadmin-user-login layadmin-user-display-show login"
+  id="LAY-user-login"
+  style="display: none; background-color: #fff"
+>
+  <div class="layadmin-user-login-main login_m">
+    <div class="layadmin-user-login-box layadmin-user-login-header">
+      <h2>爱上西安</h2>
+      <p>后台管理系统</p>
+    </div>
+    <div class="login_boder">
+      <div
+        class="layadmin-user-login-box layadmin-user-login-body layui-form login_padding"
+      >
+        <h2>用户名</h2>
+        <div class="layui-form-item">
+          <label
+            class="layadmin-user-login-icon layui-icon layui-icon-username"
+            for="LAY-user-login-username"
+          ></label>
+          <input
+            type="text"
+            name="username"
+            id="LAY-user-login-username"
+            lay-verify="required"
+            placeholder="用户名"
+            class="layui-input"
+          />
+        </div>
+        <h2>密码</h2>
+        <div class="layui-form-item">
+          <label
+            class="layadmin-user-login-icon layui-icon layui-icon-password"
+            for="LAY-user-login-password"
+          ></label>
+          <input
+            type="password"
+            name="password"
+            id="LAY-user-login-password"
+            lay-verify="required"
+            placeholder="密码"
+            class="layui-input"
+          />
+        </div>
+        <div style="display: flex; flex-direction: row-reverse">
+          <a lay-href="/set/user/forgetPass" style="color: rgb(63, 63, 207)"
+            >忘记密码</a
+          >
+        </div>
+        <div class="layui-form-item">
+          <button
+            class="layui-btn layui-btn-fluid"
+            lay-submit
+            id="loginBtn"
+            lay-filter="LAY-user-login-submit"
+          >
+            登 录
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-trans layadmin-user-login-footer">
+      <p>
+        © 2019 <a href="http://www.xpu.edu/" target="_blank">西安工程大学</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    layui.use(
+      ["admin", "form", "user", "baseSetting", "lovexian"],
+      function () {
+        var $ = layui.$,
+          setter = layui.setter,
+          admin = layui.admin,
+          form = layui.form,
+          router = layui.router(),
+          lovexian = layui.lovexian,
+          search = router.search,
+          proPath = layui.baseSetting.LoveXianConfig.proApi;
+
+        form.render();
+        //提交
+        form.on("submit(LAY-user-login-submit)", function (obj) {
+          function generateUUID() {
+            var d = new Date().getTime();
+            if (
+              window.performance &&
+              typeof window.performance.now === "function"
+            ) {
+              d += performance.now(); //use high-precision timer if available
+            }
+            var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+              /[xy]/g,
+              function (c) {
+                var r = (d + Math.random() * 16) % 16 | 0;
+                d = Math.floor(d / 16);
+                return (c == "x" ? r : (r & 0x3) | 0x8).toString(16);
+              }
+            );
+            return uuid;
+          }
+
+          var index = layer.load(0, { shade: false });
+          $("#loginBtn").attr("disabled", "disabled");
+          $("#loginBtn").addClass("layui-btn-disabled");
+          //请求登入接口
+          admin.req({
+            url: proPath + "/system/login/login", //实际使用请改成服务端真实接口
+            type: "POST",
+            data: obj.field,
+            error: function (err) {
+              layer.msg(err.responseJSON.message, {
+                offset: "15px",
+                icon: 2,
+              });
+            },
+            done: function (res) {
+              layer.close(index);
+              if (res.status == "200") {
+                //请求成功后，写入 access_token
+                layui.data(setter.tableName, {
+                  key: setter.request.tokenName,
+                  value: res.data.token,
+                });
+                layui.data(setter.tableName, {
+                  key: setter.USERNAME,
+                  value: res.data.user,
+                });
+                layui.data(setter.tableName, {
+                  key: setter.PERMISSION,
+                  value: res.data.permissions,
+                });
+                layui.data(setter.tableName, {
+                  key: setter.ROLE,
+                  value: res.data.roles,
+                });
+
+                layui.data(setter.loginStatus, {
+                  key: setter.loginStatus,
+                  value: true,
+                });
+                layui.data(setter.cid, {
+                  key: setter.cid,
+                  value: generateUUID(),
+                });
+                //登入成功的提示与跳转
+                layer.msg(
+                  "登入成功",
+                  {
+                    offset: "15px",
+                    icon: 1,
+                    time: 1000,
+                  },
+                  function () {
+                    $("#loginBtn").removeAttr("disabled");
+                    $("#loginBtn").removeClass("layui-btn-disabled");
+                    if (res.data.user.changePass === 1) {
+                      location.hash = search.redirect
+                        ? decodeURIComponent(search.redirect)
+                        : "/";
+                    } else if (res.data.user.changePass === 0) {
+                      layer.msg(
+                        "您的密码过于简单，请修改密码后再使用系统",
+                        {
+                          offset: "15px",
+                          icon: 1,
+                          time: 1000,
+                        },
+                        function () {
+                          $("#loginBtn").removeAttr("disabled");
+                          $("#loginBtn").removeClass("layui-btn-disabled");
+                          location.hash = "/set/user/password";
+                        }
+                      );
+                    }
+                  }
+                );
+              } else {
+                $("#loginBtn").removeAttr("disabled");
+                $("#loginBtn").removeClass("layui-btn-disabled");
+                if (res.status == "400") {
+                  lovexian.alert.error(res.message);
+                }
+              }
+            },
+          });
+        });
+      }
+    );
+  </script>
+</div>

@@ -1,0 +1,60 @@
+<script src="../src/lib/extend/shiroPermissions.js?v={{ layui.admin.v }}-1"></script>
+<script type="text/html" template>
+    <link rel="stylesheet" href="{{ layui.setter.base }}style/lovexian.css?v={{ layui.admin.v }}-1" media="all">
+</script>
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-generator" lay-title="代码生成">
+    <div class="layui-row lovexian-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <form class="layui-form layui-table-form" lay-filter="generator-table-form">
+                        <div class="layui-row">
+                            <div class="layui-col-md10">
+
+                                <div class="layui-form-item">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">数据源</label>
+                                        <div class="layui-input-inline">
+                                            <select name="dataSourceType">
+                                                <option value="1">APP管理数据源</option>
+                                                <option value="0">RBAC权限数据源</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label layui-form-label-sm">表名</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="tableName" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-col-md2 layui-col-sm12 layui-col-xs12 table-action-area">
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action" id="query">
+                                    <i class="layui-icon">&#xe615;</i>
+                                </div>
+                                <div class="layui-btn layui-btn-sm layui-btn-primary table-action" id="reset">
+                                    <i class="layui-icon">&#xe669;</i>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table lay-filter="configureTable" lay-data="{id: 'configureTable'}">
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="generator-option">
+    {{# if(hasPermission(['generator:generate'])) { }}
+        <a lay-event="generate" ><i class="layui-icon lovexian-edit-area lovexian-blue">&#xe82a;</i></a>
+    {{# }else{ }}
+        <span class="layui-badge-dot lovexian-bg-orange"></span> 无权限
+    {{# } }}
+</script>
+<script type="text/javascript">
+    layui.use('develop/generator', layui.factory('develop/generator'));
+</script>

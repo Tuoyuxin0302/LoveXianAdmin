@@ -1,0 +1,165 @@
+﻿<body>
+<script type="text/html" template lay-done="layui.data.sendParams(d.params)">
+    <form class="layui-form layui-row layui-col-space10 layui-bg-white"  lay-filter="touristForm" id="touristForm">
+        <input type="text" class="layui-hide" {{# if(d.params.id != undefined){ }}value = "{{ d.params.id }}" {{# } }} name="id" >
+        <div class="layui-col-md9 layui-col-xs12">
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-md9 layui-col-xs7">
+                    <div class="layui-form-item magt3">
+                        <label class="layui-form-label lovexian-form-item-require">景点名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input name" name="name" value = "{{ d.params.name || '' }}" lay-verify="notnull" placeholder="请输入景点名称">
+                        </div><!--actiontitle 需要改变变量名称-->
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">景点经度</label>
+                            <div class="layui-input-block">
+                                <input type="text"   name="longitude" id="longitude" value = "{{ d.params.longitude || '' }}"  lay-verify="notnull"  autocomplete="off" placeholder="请输入经度"
+                                       class="layui-input longitude" readonly>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">景点纬度</label>
+                            <div class="layui-input-block">
+                                <input type="text"    name="latitude" id="latitude" value = "{{ d.params.latitude || '' }}" lay-verify="notnull"  autocomplete="off" placeholder="请输入纬度"
+                                       class="layui-input latitude" readonly>
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label"></label>
+                            <div class="layui-input-inline">
+                                <button type="button" class="layui-btn" onclick="gaodeMap()" >高德查询</button>
+                            </div>
+                        </div>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </div>
+                    <div class="layui-form-item magt3">
+                        <label class="layui-form-label">位置名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input locationName" lay-verify="notnull"  value = "{{ d.params.locationName || '' }}"  name="locationName" placeholder="请输入文章子标题">
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item magt3">
+                        <label class="layui-form-label">旺季时间</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input hotTime" value = "{{ d.params.hotTime || '' }}" name="hotTime" placeholder="请输入文章子标题">
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item magt3">
+                        <label class="layui-form-label">淡季时间</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input coldTime" value = "{{ d.params.coldTime || '' }}"  name="coldTime" placeholder="请输入文章子标题">
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item magt3">
+                        <label class="layui-form-label">景点门票</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input tickets" value = "{{ d.params.tickets || '' }}"  name="tickets" placeholder="请输入文章子标题">
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item magt3">
+                        <label class="layui-form-label">官网地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input webSite" value = "{{ d.params.webSite || '' }}"  name="webSite" placeholder="请输入官网地址">
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item magt3">
+                        <label class="layui-form-label">关键字</label>
+                        <div class="layui-input-block">
+                            <input type="text" class="layui-input keywords" value = "{{ d.params.keywords || '' }}" lay-verify="notnull"  name="keywords" placeholder="请输入文章子标题">
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">景点简介</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入景点简介" class="layui-textarea introduction" name="introduction" lay-verify="notnull" >{{ d.params.introduction || ''}}</textarea>
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">交通信息</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入交通攻略"  class="layui-textarea traffic" name="traffic"   >{{ d.params.traffic || ''}}</textarea>
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">其他信息</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入其他信息"  class="layui-textarea others" name="others"   >{{ d.params.others || ''}}</textarea>
+                        </div><!--同样需要修改变量名称-->
+                    </div>
+
+                </div>
+                <div class="layui-col-md2 layui-col-xs12">
+                    <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 景点缩略图</blockquote>
+                    <div class="border">
+                        <div class="layui-upload-list thumbBox mag0 magt4"  id="fengmian">
+                            <img class="layui-upload-img thumbnails"   name="thumbImg" src="{{ d.params.thumbnails}}" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3 layui-col-xs12">
+            <blockquote class="layui-elem-quote title magt10"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+            <div class="border">
+                <div>
+                    <label class="layui-form-label"><i class="seraph icon-look"></i> 星级</label>
+                    <div id="test1" lay-verify="test1"  name="test1"></div>
+                </div>
+                <div class="layui-form-item openness">
+                    <label class="layui-form-label" style="width: 13%"><i class="seraph icon-look"></i> 公开度</label>
+                    <div class="layui-input-block" >
+                        <input type="radio" name="opennessCheck" value="1" title="开放浏览" lay-skin="primary" checked = "{{ d.params.isShow == 1}}"/>
+                        <input type="radio" name="opennessCheck" value="0" title="私密浏览" lay-skin="primary" checked = "{{ d.params.isShow == 0}}"/>
+                    </div>
+                </div>
+                <div class="layui-form-item Top">
+                    <label class="layui-form-label" style="width: 13%"><i class="seraph icon-zhiding"></i> 置　顶</label>
+                    <div class="layui-input-block" >
+                        <input type="checkbox" name="isTop" lay-skin="switch" lay-text="是|否" checked="{{ d.params.isTop == 1}}">
+                    </div>
+                </div>
+                <div class="layui-form-item openness">
+                    <label class="layui-form-label" style="display: none"><i class="seraph icon-look"></i> 语言</label>
+                    <div class="border" style="display: none">
+                        <select name="languageTypeId" id="languageTypeId" lay-verify="required">
+                            <option value="1" selected>英语</option>
+                            <option value="2">汉语</option>
+                        </select>
+                    </div>
+                </div>
+                <hr class="layui-bg-gray" />
+                <div class="layui-right">
+                    <a  id="saveBtn" class="layui-btn layui-btn-sm" lay-filter="addNews" lay-submit><i class="layui-icon">&#xe655;</i>保存</a>
+                    <a id='cancelBtn' class="layui-btn layui-btn-sm layui-btn-danger" > <i
+                            class="layui-icon">&#xe850;</i> 取 消 </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+</body>
+
+
+<script>
+    var starEle;
+    var starNum = 0;
+    layui.data.sendParams = function(params){
+        if(params.isEdit){
+            starNum = params.star;
+        }
+        layui.use('rate', function(){
+            var rate = layui.rate;
+            //渲染
+            starEle = rate.render({
+                elem: '#test1',  //绑定元素,
+                length: 5,
+                value: starNum
+                ,choose: function(value){
+                    starNum = value;
+                }
+            });
+        });
+    };
+</script>

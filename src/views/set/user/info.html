@@ -1,0 +1,178 @@
+<script>
+  var currentUser = layui.data(layui.setter.tableName)[layui.setter.USERNAME];
+</script>
+<script type="text/html" template>
+  <link rel="stylesheet" href="{{ layui.setter.base }}style/lovexian.css?v={{ layui.admin.v }}-1" media="all">
+</script>
+<style>
+  #lovexian-user-profile #user-profile, #lovexian-user-profile .user-profile-card {
+    display: inline-block;
+  }
+
+  #lovexian-user-profile #user-img, #lovexian-user-profile #user-info {
+    display: inline-block;
+    float: left;
+  }
+
+  #lovexian-user-profile #user-img img {
+    width: 7rem;
+    margin: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  #lovexian-user-profile #user-info {
+    margin: .95rem 0 .95rem 1.2rem;
+  }
+
+  #lovexian-user-profile #user-info div {
+    margin: 3px 0;
+    max-width: 22rem;
+  }
+
+  #lovexian-user-profile #options-wrapper {
+    text-align: center;
+    margin-top: .5rem;
+  }
+
+  #lovexian-user-profile #update-user-info {
+    cursor: pointer;
+    margin-left: -1rem;
+  }
+
+  #lovexian-user-profile #options-wrapper a {
+    padding: 4px 6px;
+    color: rgba(0, 0, 0, 0.65);
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+  }
+
+  #lovexian-user-profile #options-wrapper a:hover {
+    color: #40a9ff;
+    border-color: #40a9ff;
+  }
+
+  #lovexian-user-profile .layui-form-item {
+    margin-bottom: 0;
+  }
+</style>
+<title>设置我的资料</title>
+
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>设置</cite></a>
+    <a><cite>我的资料</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-user-profile" lay-title="个人中心">
+  <div class="layui-row layui-col-space8 lovexian-container">
+    <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+      <div class="layui-card">
+        <div class="layui-card-header">个人信息</div>
+        <div class="layui-card-body user-profile-card">
+          <div id="user-profile">
+            <div id="user-img">
+              <img alt="头像" title="点我更换头像" id="change-img">
+              <div id="options-wrapper">
+                <div id="update-user-info">
+                  <a>
+                    <span class="layui-icon layui-icon-setting"></span>
+                    编辑资料
+                  </a>
+                </div>
+              </div>
+            </div>
+            <script type="text/html" template>
+              <div id="user-info">
+                <div><span class="layui-icon layui-icon-user"></span> 账号：
+                  {{currentUser.username}}
+                </div>
+                <div><span class="layui-icon layui-icon-trophy"></span> 角色：
+                  {{currentUser.roleName}}
+                </div>
+                <div><span class="layui-icon layui-icon-home"></span> 部门：
+                  {{currentUser.deptName}}
+                </div>
+                <div><span class="layui-icon layui-icon-skin"></span> 性别：
+                  {{# if(currentUser.sex === '0'){ }}
+                  男
+                  {{# } }}
+                  {{# if(currentUser.sex === '1'){ }}
+                  女
+                  {{# } }}
+                  {{# if(currentUser.sex === '2'){ }}
+                  保密
+                  {{# } }}
+                </div>
+                <div><span class="layui-icon layui-icon-phone"></span> 电话：
+                  {{currentUser.mobile?currentUser.mobile:'暂无电话信息'}}
+                </div>
+                <div><span class="layui-icon layui-icon-mail"></span> 邮箱：
+                  {{currentUser.email?currentUser.email:'暂无电话信息'}}
+                </div>
+                <div><span class="layui-icon layui-icon-read"></span> 简介：
+                  {{currentUser.description?currentUser.description:'暂无简介'}}
+                </div>
+              </div>
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-th-inline="none" type="text/javascript">
+  layui.use(['jquery', 'form', 'lovexian','baseSetting'], function () {
+
+    var $ = layui.jquery,
+            proPath = layui.baseSetting.LoveXianConfig.proApi
+            lovexian = layui.lovexian,
+            form = layui.form,
+            $view = $('#lovexian-user-profile');
+
+    form.render();
+
+    $view.find('#user-img img').attr('src', '../src/style/images/avatar/'+currentUser.avatar);
+
+    $view.on('click', '#update-user-info', function () {
+      console.log("编辑资料...");
+      layer.open({
+        type: 2,
+        title:'个人信息修改',
+        offset: '100px',
+        resize:false,
+        btn: ['确定'],
+        area: ['957px','500px'], //宽高
+        content: '#/systemadmin/user/profileUpdate',
+        yes:function(index,layero) {
+          layer.getChildFrame('#submit',index).click();
+        },
+        end:function() {
+          window.location.reload();
+        }
+      });
+    });
+
+    $view.on('click', '#user-profile img', function () {
+      layer.open({
+        type: 2,
+        title:'点击更换',
+        offset: '100px',
+        resize:false,
+        area: ['650px','400px'], //宽高
+        content: '#/systemadmin/user/avatar',
+        end:function() {
+          $view.find('#user-img img').attr('src', '../src/style/images/avatar/'+layui.data(layui.setter.tableName)[layui.setter.USERNAME].avatar);
+        }
+      });
+    });
+
+    $view.on('click', '#submit', function () {
+      $view.find('#submit-form').trigger('click');
+    });
+
+  })
+</script>

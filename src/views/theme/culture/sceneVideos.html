@@ -1,0 +1,58 @@
+<style>
+    #Videos li{ width:19%; margin:0.5% 0.5%; float: left; overflow:hidden;}
+    #Videos li img{ height: 210px;width:100%; cursor:pointer; }
+    #Videos li .operate{ display: block; height: 40px; width:100%; background:#f4f5f9;}
+    #Videos li .operate .check{ float:left; margin-left:11px; height:18px;position:relative;}
+    #Videos li .operate .check .layui-form-checkbox[lay-skin=primary]{ width:100%;}
+    #Videos li .operate .check .layui-form-checkbox[lay-skin=primary] span{ padding:0 5px 0 25px; width:100%; box-sizing:border-box;}
+    #Videos li .operate .check .layui-form-checkbox[lay-skin=primary] i{position:absolute; left:0; top:0;}
+    #Videos li .operate .img_del{ float:right; margin:9px 11px 0 0; font-size: 22px !important; cursor:pointer; }
+    #Videos li .operate .img_del:hover{ color:#f00; }
+
+    .mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 19950928;
+        width: 100%;
+        height: 210px;
+        background: rgba(101, 101, 101, 0.6);
+        color: #ffffff;
+        opacity: 0;
+        cursor:pointer;
+    }
+
+    #Videos li:hover .ico_play{
+        background-image: url(../../../../LoveXianAdmin/src/images/ico_play.png);
+    }
+    #Videos li:hover .mask {
+        opacity: 1;
+    }
+
+    .ico_play {
+        z-index: 19950929;
+        position: absolute;
+        top: 30%;
+        left: 40%;
+        width: 60px;
+        height: 60px;
+        cursor:pointer;
+    }
+</style>
+<div id="noticeMarker"></div>
+<script type="text/html" template >
+    <input type="text" id="sceneId" class="hidden" style="display:none;" value="{{d.params.sceneId}}"/>
+</script>
+<form class="layui-form" id="sceneVideos" lay-filter="sceneVideos">
+    <blockquote class="layui-elem-quote news_search" style="background-color: white">
+        <div class="layui-inline">
+            <button type="button" class="layui-btn layui-btn-sm  uploadNewVideo">上传新视频</button>
+        </div>
+        <div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="progressBar" id="progress">
+            <div id="progressBar" class="layui-progress-bar layui-bg-blue" lay-percent="0%"></div>
+        </div>
+    </blockquote>
+    <ul class="layer-photos-demo" id="Videos">
+
+    </ul>
+</form>

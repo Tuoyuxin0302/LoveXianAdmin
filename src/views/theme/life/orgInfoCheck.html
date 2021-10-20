@@ -1,0 +1,117 @@
+<form class="layui-form layui-row layui-col-space10 layui-bg-white" lay-filter="orgCheck" style="display: none"
+      id="orgCheck">
+    <!--		<input type="text" class="hidden" lay-verify="id" name="id" style="height: 0px;">-->
+    <div class="layui-col-md9 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md12 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">机构名</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input orgName" lay-verify="orgName" name="orgName"
+                               placeholder="请输入机构名">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">机构地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input orgAddress" lay-verify="orgAddress" name="orgAddress"
+                               placeholder="请输入机构地址">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">机构介绍</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入机构介绍" class="layui-textarea orgIntroduce" name="orgIntroduce"
+                                  lay-verify="orgIntroduce"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">联系方式</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input orgPhone" lay-verify="orgPhone" name="orgPhone"
+                               placeholder="请输入机构地址">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">位置名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input locationName" lay-verify="locationName"
+                               name="locationName" placeholder="请输入机构地址">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">路线</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入机构介绍" class="layui-textarea orgRoute" name="orgRoute"
+                                  lay-verify="orgRoute"></textarea>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-md3 layui-col-xs12">
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 机构图像</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <div class="layui-upload-list thumbBox mag0 magt4">
+                    <img class="layui-upload-img thumbImg" name="headImage" id="headImage" readonly>
+                </div>
+            </div>
+        </div>
+       <!-- <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 经纬度</blockquote>
+        <label class="layui-form-label">机构经度</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input locationLongitude" lay-verify="locationLongitude"
+                   name="locationLongitude" placeholder="请输入机构地址">
+        </div>
+        <label class="layui-form-label">机构纬度</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input locationLatitude" lay-verify="locationLatitude"
+                   name="locationLatitude" placeholder="请输入机构地址">
+        </div>-->
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+        <div class="border">
+            <div class="layui-form-item openness">
+                <label class="layui-form-label" style="width: 13%"><i class="seraph icon-look"></i> 公开度</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="opennessCheck" value="1" title="开放浏览" lay-skin="primary" disabled
+                           checked/>
+                    <input type="radio" name="opennessCheck" value="0" title="私密浏览" lay-skin="primary" disabled/>
+                </div>
+            </div>
+            <div class="layui-form-item newsTop">
+                <label class="layui-form-label" style="width: 13%"><i class="seraph icon-zhiding"></i> 置　顶</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="isTopCheck" lay-skin="switch" lay-text="是|否" disabled>
+                </div>
+            </div>
+        </div>
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe679;</i> 审核</blockquote>
+        <div class="border">
+            <div class="layui-form-item checkState">
+                <label class="layui-form-label"><i class="seraph icon-look"></i> 操作</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="checkState" title="审核通过" lay-skin="primary"
+                           lay-filter="checkState" value="1" checked/>
+                    <input type="radio" name="checkState" title="审核拒绝" lay-skin="primary"
+                           lay-filter="checkState" value="2"/>
+                </div>
+            </div>
+            <div class="layui-form-item layui-hide releaseDate">
+                <label class="layui-form-label lovexian-form-item-require"></label>
+                <div class="layui-input-block ">
+                    <input type="text" class="layui-input" id="refuseReason" placeholder="请填写拒绝原因"/>
+                </div>
+            </div>
+            <div class="layui-form-item ">
+                <label class="layui-form-label"></label>
+                <div class="layui-left">
+                    <a class="layui-btn layui-btn-sm" lay-filter="checkProject" lay-submit><i
+                            class="layui-icon">&#xe609;</i>提交</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

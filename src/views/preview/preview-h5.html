@@ -1,0 +1,137 @@
+<style>
+	* {
+		font-family:TimesNewRoman;
+		margin: 0;
+		padding: 0;
+		-webkit-tap-highlight-color: transparent;
+		outline: none;
+	}
+
+	body {
+		background-color:white;
+
+	}
+
+	audio {
+		display:none;
+	}
+
+	img{
+		width: 100%;
+		object-fit:cover;
+		padding:5px 0;
+	}
+
+	.article-title {
+		font-size: 30px;
+		font-weight: 600;
+		line-height: 42px;
+		text-align: left;
+		width: 100%;
+		font-family: TimesNewRomanBold;
+	}
+	.article_title_highlighter {
+		width: 20px;
+		height: 4px;
+		margin-top:-12px;
+	}
+
+	.publish_time {
+		color: #737373;
+		font-size: 12px;
+		margin-bottom: 3px;
+		overflow: hidden;
+		height: 20px;
+		line-height: 20px;
+		width: calc(100vw - 40px);
+	}
+
+	p span {
+		line-height: 1.5;
+	}
+
+	.container {
+		padding: 24px;
+		padding-top: 10px;
+		overflow: auto;
+		position: relative;
+		background-size: 100% 100%;
+	}
+
+	p {
+		line-height: 1.5;
+		margin-bottom:15px;
+		font-size:18px;
+	}
+
+	strong {
+		font-size:20px;
+	}
+
+	html, body {
+
+		-webkit-overflow-scrolling: touch;
+		max-height: 100vh;
+		background-color: #fff;
+		overflow: auto;
+		z-index: 1;
+	}
+	video {
+		display:block;
+		width:100%;
+		-moz-border-radius: 0.5em;
+		-webkit-border-radius: 0.5em;
+		border-radius:0.5em;
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+
+	.audioPlayer-hidden {
+		position:absolute;display:flex;width:50px;height:50px;left:96%;top:50%;
+	}
+
+	.audioPlayer-show {
+		position:absolute;display:flex;width:50px;height:50px;right:180px;top:50%;
+	}
+
+	.hidden {
+		display:none;
+	}
+
+	.layui-side{
+		width: 0px;
+		height: 0px;
+		display: none;
+	}
+	#LAY_app_body{
+		top:5px;
+		background-color: #fcfcfc;
+	}
+	.layui-header{
+		width:0px;
+		height: 0px;
+		display: none;
+	}
+
+
+</style>
+<!DOCTYPE html>
+<html >
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="referrer" content="never">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<link rel="stylesheet" type="text/css" href="https://lovexiancity.xpu.edu.cn:450/articleCssJs/css.css">
+
+		<script type="text/javascript" src="https://lovexiancity.xpu.edu.cn:450/articleCssJs/js/TweenMax.min.js"></script>
+		<link rel="stylesheet" href="https://lovexiancity.xpu.edu.cn:450/articleCssJs/article.css"/>
+	</head>
+	<body>
+		<div class="article-content" style="margin-top: 0px;" unselectable="on" onselectstart="return false;" style="-moz-user-select:none;"></div>
+	</body>
+</html>
+

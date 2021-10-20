@@ -1,0 +1,223 @@
+<!--#include virtual="eletouristCheckAdd.html"-->
+<!--上面那句不能删，不是注释-->
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-culture-check" lay-title="爱文化">
+    <div class="layui-row lovexian-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <div class="layui-row">
+                        <form class="layui-form layui-table-form" lay-filter="action-table-form">
+                            <div class="layui-row">
+                                <div class="layui-col-md10">
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label layui-form-label-sm">名称</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="placeName" id="placeName" autocomplete="off" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label layui-form-label-sm">创建时间</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="createTime" id="createTime" class="layui-input">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label layui-form-label-sm">状态</label>
+                                            <div class="layui-input-inline">
+                                                <select name="status">
+                                                    <option value=""></option>
+                                                    <option value="0">未删除</option>
+                                                    <option value="1">已删除</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label layui-form-label-sm">审核状态</label>
+                                            <div class="layui-input-inline">
+                                                <select name="check">
+                                                    <option value=""></option>
+                                                    <option value="0">未审核</option>
+                                                    <option value="1">已通过</option>
+                                                    <option value="2">已拒绝</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md2 layui-col-sm12 layui-col-xs12 table-action-area">
+                                    <div class="layui-btn layui-btn-sm layui-btn-primary table-action" name="query" title="搜索">
+                                        <i class="layui-icon">&#xe615;</i>
+                                    </div>
+                                    <div class="layui-btn layui-btn-sm layui-btn-primary table-action" name="reset" title="重置">
+                                        <i class="layui-icon">&#xe669;</i>
+                                    </div>
+                                    <span id="actionMoreContainer">
+
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="layui-tab layui-tab-brief" lay-filter="placeTab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this" lay-id="1">地标建筑</li>
+                                <li lay-id="2">学校</li>
+                                <li lay-id="3">涉外医疗机构</li>
+                                <li lay-id="4">文化场馆</li>
+                                <li lay-id="5">博物馆</li>
+                                <li lay-id="6">体育馆</li>
+                                <li lay-id="7">公园</li>
+                                <li lay-id="7">酒店</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <!--地标建筑开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable1" lay-data="{id: 'placeCheckTable1'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--地标建筑结束-->
+                                <!--学校开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable2" lay-data="{id: 'placeCheckTable2'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--学校结束-->
+                                <!--涉外医疗机构开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable3" lay-data="{id: 'placeCheckTable2'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--涉外医疗机构结束-->
+                                <!--文化场馆开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable4" lay-data="{id: 'placeCheckTable2'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--文化场馆结束-->
+                                <!--博物馆开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable5" lay-data="{id: 'placeCheckTable2'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--博物馆结束-->
+                                <!--体育馆开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable6" lay-data="{id: 'placeCheckTable2'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--体育馆结束-->
+                                <!--公园开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable7" lay-data="{id: 'placeCheckTable2'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--公园结束-->
+                                <!--酒店开始-->
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <table lay-filter="placeCheckTable" id="placeCheckTable8" lay-data="{id: 'placeCheckTable2'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!--酒店结束-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="preview-layer">
+    <div class="preview-bg"></div>
+    <div class="preview-phone" id="previewPhone">
+        <iframe id="preview-html" name="preview-html" src="#/preview/preview-h5"></iframe>
+    </div>
+</div>
+
+<script type="text/html" id="check-state">
+    {{#
+    var status = {
+    100: {title: '草稿状态', color: 'lime'},
+    0: {title: '未审核', color: 'blue'},
+    1: {title: '审核通过', color: 'green'},
+    2: {title: '审核拒绝', color: 'volcano'}
+    }[d.checkState];
+
+    }}
+    <span class="layui-badge lovexian-tag-{{ status.color}}">{{ status.title }}</span>
+</script>
+
+<script type="text/html" id="show-flag">
+    {{# if(d.isShow == 1){ }}
+    <input type="checkbox" name="delState" lay-skin="switch" lay-text="展示|不展示" checked>
+    {{# }else{ }}
+    <input type="checkbox" name="delState" lay-skin="switch" lay-text="展示|不展示">
+    {{# } }}
+</script>
+
+<script type="text/html" id="top-flag">
+    {{# if(d.isTop == 1){ }}
+    <input type="checkbox" name="isTop" lay-skin="switch" lay-text="置顶|不置顶" checked>
+    {{# }else{ }}
+    <input type="checkbox" name="isTop" lay-skin="switch" lay-text="置顶|不置顶">
+    {{# } }}
+</script>
+
+<!--<script type="text/html" id="actionMoreTpl">-->
+<!--    {{# if(hasAnyPermission(['placeInfo:add'])) { }}-->
+<!--    <div class="layui-btn layui-btn-sm layui-btn-primary table-action action-more">-->
+<!--        <i class="layui-icon">&#xe875;</i>-->
+<!--    </div>-->
+<!--    {{# } }}-->
+<!--</script>-->
+
+<script type="text/html" id="action-option">
+    {{# if(hasPermission(['placeCheck:history'])) { }}
+    <a lay-event="history" title="审核历史"><i class="layui-icon lovexian-edit-area lovexian-green">&#xe60e;</i></a>
+    {{# } }}
+    {{# if(hasPermission(['placeCheck:update'])) { }}
+    {{# if(d.checkState==0){ }}
+    <a lay-event="edit" title=" 编辑"><i class="layui-icon lovexian-edit-area lovexian-blue" >&#xe642;</i></a>
+    {{# }else{ }}
+    <a lay-event="edit" title=" 编辑"><i class="layui-icon lovexian-edit-area lovexian-blue" style="color: #9f9f9f">&#xe642;</i></a>
+    {{# } }}
+    {{# } }}
+<!--    {{# if(hasPermission(['placeInfo:delete'])) { }}-->
+<!--    <a lay-event="del" title="删除"><i class="layui-icon lovexian-edit-area lovexian-red">&#xe640;</i></a>-->
+<!--    {{# } }}-->
+
+    {{# if(lacksPermission(['actionInfo:list','actionInfo:update','actionInfo:delete'])) { }}
+    <span>
+        <span class="layui-badge-dot lovexian-bg-orange"></span> 无权限
+    </span>
+    {{# } }}
+</script>
+
+<script>
+    layui.use('theme/culture/eletouristCheck', layui.factory('theme/culture/eletouristCheck'));
+</script>

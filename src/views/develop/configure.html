@@ -1,0 +1,113 @@
+<script src="../src/lib/extend/shiroPermissions.js?v={{ layui.admin.v }}-1"></script>
+<style>
+    #lovexian-generator-configure .layui-form-label {
+        width: 125px
+    }
+
+    #lovexian-generator-configure .layui-input-block {
+        margin-left: 155px;
+    }
+    .lovexian-form-item-require:before{
+        display:inline-block;margin-right:4px;content:"*";line-height:1;font-size:13px;color:#f5222d
+    }
+</style>
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-generator-configure" lay-title="生成配置">
+    <div class="layui-row lovexian-container">
+        <div class="layui-card">
+            <div class="layui-card-body" style="padding: 15px;">
+                <form class="layui-form" action="" lay-filter="generator-configure-form">
+                    <div class="layui-form-item lovexian-hide">
+                        <label class="layui-form-label lovexian-form-item-require">ID：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="id" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">作者名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="author" autocomplete="off" maxlength="20" lay-verify="required"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">基础包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="basePackage" autocomplete="off" maxlength="50"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">entity包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="entityPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">service包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="servicePackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">serviceImpl包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="serviceImplPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">mapper包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="mapperPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">mapperXml包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="mapperXmlPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label lovexian-form-item-require">controller包名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="controllerPackage" autocomplete="off" maxlength="20"
+                                   lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否去除表前缀：</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="isTrim" value="1" lay-filter="isTrim" title="是" checked="">
+                            <input type="radio" name="isTrim" value="0" lay-filter="isTrim" title="否">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">表前缀：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="trimValue" autocomplete="off" maxlength="20" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" id="updateBtnContainer">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="updateBtnTpl">
+    {{# if(hasPermission(['generator:configure:update'])) { }}
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit="" lay-filter="generator-configure-form-submit">保存配置</button>
+        </div>
+    {{# } }}
+</script>
+<script type="text/javascript">
+    layui.use('develop/configure', layui.factory('develop/configure'));
+</script>

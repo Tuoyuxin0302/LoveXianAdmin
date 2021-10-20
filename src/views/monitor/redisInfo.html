@@ -1,0 +1,57 @@
+<style>
+    #lovexian-redis-info .layui-card-header {
+        font-weight: 600;
+    }
+
+    #lovexian-redis-info table th, #lovexian-redis-info table td {
+        height: 28px;
+        line-height: 28px;
+        padding: 9px 15px;
+        position: relative;
+        box-sizing: border-box;
+    }
+</style>
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-redis-info" lay-title="Redis监控">
+    <div class="layui-row layui-col-space8 lovexian-container">
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12 lovexian-hide">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <span class="lovexian-alert-base lovexian-alert-warn">登录失效，监控已暂停，<a id="continue">退出重新登录</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">Redis内存实时占用情况</div>
+                <div class="layui-card-body">
+                    <div id="redisMemoryChart" style="height: 320px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">Redis Key的实时数量</div>
+                <div class="layui-card-body">
+                    <div id="redisKeySizeChart" style="height: 320px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 layui-col-sm12 layui-col-xs12">
+            <div class="layui-card">
+                <div class="layui-card-header">Redis详细信息</div>
+                <div class="layui-card-body  lovexian-table-full">
+                    <div class="layui-form layui-border-box layui-table-view" lay-id="redisInfoTable">
+                        <div class="layui-table-box">
+                            <table cellspacing="0" cellpadding="0" border="0" class="layui-table" lay-skin="line" id="redisInfoTable">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use('monitor/redisInfo', layui.factory('monitor/redisInfo'));
+</script>

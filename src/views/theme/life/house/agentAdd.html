@@ -1,0 +1,98 @@
+
+<form class="layui-form layui-row layui-col-space10 layui-bg-white" lay-filter="agentContent" style="display: none" id="agent">
+    <div class="layui-col-md10 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md12 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">中介姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input agentName" name="agentName" placeholder="中介姓名" lay-verify="notnull">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">地址</label>
+                    <div class="layui-input-block ">
+                        <input type="text" class="layui-input agentAddress" name="agentAddress" placeholder="地址" lay-verify="notnull">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">联系方式</label>
+                    <div class="layui-input-block ">
+                        <input type="text" class="layui-input agentPhone" name="agentPhone" placeholder="请负责人联系方式" lay-verify="required|phone">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">公司门店</label>
+                    <div class="layui-input-block ">
+                        <input type="text" class="layui-input companyBranch" name="companyBranch"
+                               placeholder="请输入文章子标题" lay-verify="notnull">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">负责区域</label>
+                    <div class="layui-input-block ">
+                        <input type="text" class="layui-input businessScope" name="businessScope" placeholder="请输入负责区域" lay-verify="notnull">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item magb0">
+
+
+            <label class="layui-form-label lovexian-form-item-require">入职时间</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="workTime" id="workTime" placeholder="yyyy-MM-dd HH:mm:ss" lay-verify="notnull">
+            </div>
+
+
+        </div>
+    </div>
+    <div class="layui-col-md2 layui-col-xs12">
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 中介图片</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <div class="layui-upload-list thumbBox mag0 magt4">
+                    <img class="layui-upload-img thumbImg" name="headImage" id="headImage" lay-verify="headImage">
+                </div>
+            </div>
+        </div>
+
+
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 保存状态</blockquote>
+
+        <div class="layui-form-item">
+                <label class="layui-form-label"><i class="layui-icon">&#xe60e;</i> 状　态</label>
+                <div class="layui-input-block actionStatus">
+                    <select name="checkState" lay-verify="required" id="checkState">
+                        <option value="100">保存草稿</option>
+                        <option value="0">等待审核</option>
+                    </select>
+                </div>
+            </div>
+
+        <blockquote class="layui-elem-quote title magt10"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+        <div class="border">
+
+            <div class="layui-form-item openness">
+                <label class="layui-form-label"><i class="seraph icon-look"></i> 公开度</label>
+                <div class="layui-input-block" id="isShow">
+                    <input type="radio" name="openness2" value="1" title="开放浏览" lay-skin="primary" checked/>
+                    <input type="radio" name="openness2" value="0" title="私密浏览" lay-skin="primary"/>
+                </div>
+            </div>
+            <div class="layui-form-item newsTop">
+                <label class="layui-form-label"><i class="seraph icon-zhiding"></i> 置　顶</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="isTop2" lay-skin="switch" lay-text="是|否">
+                </div>
+            </div>
+            <hr class="layui-bg-gray"/>
+            <div class="layui-right">
+                <a id="saveBtn" class="layui-btn layui-btn-sm" lay-filter="addProject" lay-submit><i class="layui-icon">&#xe655;</i> 保 存 </a>
+                <a  id='cancelBtn' class="layui-btn layui-btn-sm layui-btn-danger" > <i class="layui-icon">&#xe850;</i> 取 消 </a>
+
+            </div>
+        </div>
+    </div>
+</form>
+

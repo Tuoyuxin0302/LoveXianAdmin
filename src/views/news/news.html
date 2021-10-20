@@ -1,0 +1,169 @@
+<script>
+    layer.config({
+        extend: 'myskin/myskin.css' //同样需要加载新皮肤
+    });
+</script>
+
+<div class="layui-fluid layui-anim lovexian-anim" id="lovexian-news" lay-title="新闻管理">
+    <div class="layui-row lovexian-container">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body lovexian-table-full">
+                    <div class="layui-row">
+                        <div class="layui-tab layui-tab-brief" lay-filter="newsTab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this" lay-id="1">新闻管理</li>
+                            </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-fluid layui-tab-item">
+                                    <div class="layui-row">
+                                        <form class="layui-form layui-table-form" lay-filter="news-table-form" id="news-table-form">
+                                            <div class="layui-row">
+                                                <div class="layui-col-md10">
+                                                    <div class="layui-form-item">
+                                                        <div class="layui-inline">
+                                                            <label class="layui-form-label layui-form-label-sm">新闻标题</label>
+                                                            <div class="layui-input-inline">
+                                                                <input type="text" name="newsTitle" autocomplete="off" class="layui-input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-inline">
+                                                            <label class="layui-form-label layui-form-label-sm">创建时间</label>
+                                                            <div class="layui-input-inline">
+                                                                <input type="text" name="createTime" id="createTime" class="layui-input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="layui-inline">
+                                                            <label class="layui-form-label layui-form-label-sm">状态</label>
+                                                            <div class="layui-input-inline">
+                                                                <select name="status">
+                                                                    <option value=""></option>
+                                                                    <option value="0">未删除</option>
+                                                                    <option value="1">已删除</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="layui-inline">
+                                                            <label class="layui-form-label layui-form-label-sm">审核状态</label>
+                                                            <div class="layui-input-inline">
+                                                                <select name="check">
+                                                                    <option value=""></option>
+                                                                    <option value="0">未审核</option>
+                                                                    <option value="1">审核中</option>
+                                                                    <option value="2">已审核</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="layui-col-md2 layui-col-sm12 layui-col-xs12 table-news-area">
+                                                    <div class="layui-btn layui-btn-sm layui-btn-primary table-news" name="query" title="搜索">
+                                                        <i class="layui-icon">&#xe615;</i>
+                                                    </div>
+                                                    <div class="layui-btn layui-btn-sm layui-btn-primary table-news" name="reset" id="resetBtn" title="重置">
+                                                        <i class="layui-icon">&#xe669;</i>
+                                                    </div>
+                                                    <span id="newsMoreContainer">
+
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <table lay-filter="newsInfoTable" id="newsInfoTable" lay-data="{id: 'newsInfoTable'}">
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="preview-layer">
+    <div class="preview-bg"></div>
+    <div class="preview-phone" id="previewPhone">
+        <iframe id="preview-html" name="preview-html" src="#/preview/preview-h5"></iframe>
+    </div>
+</div>
+
+<script type="text/html" id="check-state">
+    {{#
+    var status = {
+    100: {title: '草稿状态', color: 'lime'},
+    0: {title: '未审核', color: 'blue'},
+    1: {title: '审核通过', color: 'green'},
+    2: {title: '审核拒绝', color: 'volcano'}
+    }[d.checkState];
+
+    }}
+    <span class="layui-badge lovexian-tag-{{ status.color}}">{{ status.title }}</span>
+</script>
+
+<script type="text/html" id="news-type">
+    {{#
+    var status = {
+    1: {title: 'News', color: 'blue'},
+    2: {title: 'AboutXian', color: 'blue'},
+
+    }[d.typeId];
+    }}
+    <span class="layui-badge lovexian-tag-{{ status.color}}">{{ status.title }}</span>
+</script>
+
+<script type="text/html" id="show-flag">
+    {{# if(d.isShow == 1){ }}
+    <input type="checkbox" name="delState" lay-skin="switch" lay-filter="switchShow" value="{{d.id}}" lay-text="展示|不展示" checked>
+    {{# }else{ }}
+    <input type="checkbox" name="delState" lay-skin="switch" lay-filter="switchShow" value="{{d.id}}" lay-text="展示|不展示">
+    {{# } }}
+</script>
+
+<script type="text/html" id="top-flag">
+    {{# if(d.isTop == 1){ }}
+    <input type="checkbox" name="isTop" lay-skin="switch" lay-filter="switchTop" value="{{d.id}}" lay-text="置顶|不置顶" checked>
+    {{# }else{ }}
+    <input type="checkbox" name="isTop" lay-skin="switch" lay-filter="switchTop" value="{{d.id}}" lay-text="置顶|不置顶">
+    {{# } }}
+</script>
+<script type="text/html" id="newsMoreTpl">
+    {{# if(hasAnyPermission(['newsInfo:add'])) { }}
+    <div class="layui-btn layui-btn-sm layui-btn-primary table-news news-more">
+        <i class="layui-icon">&#xe875;</i>
+    </div>
+    {{# } }}
+</script>
+
+<script type="text/html" id="news-option">
+    {{# if(hasPermission(['newsInfo:list'])) { }}
+    <a lay-event="detail" title="查看详情"><i class="layui-icon lovexian-edit-area lovexian-green">&#xe7a5;</i></a>
+    {{# } }}
+    {{# if(hasPermission(['newsInfo:update'])) { }}
+
+    {{# if(d.checkState==0){ }}
+    <a lay-event="edit" title=" 编辑"><i class="layui-icon lovexian-edit-area lovexian-blue" style="color: #9f9f9f">&#xe642;</i></a>
+    {{# }else{ }}
+    <a lay-event="edit" title=" 编辑"><i class="layui-icon lovexian-edit-area lovexian-blue">&#xe642;</i></a>
+    {{# } }}
+    {{# } }}
+
+
+    {{# if(hasPermission(['newsInfo:delete'])) { }}
+    <a lay-event="del" title="删除"><i class="layui-icon lovexian-edit-area lovexian-red">&#xe640;</i></a>
+    {{# } }}
+
+    {{# if(lacksPermission(['newsInfo:list','newsInfo:update','newsInfo:delete'])) { }}
+    <span>
+            <span class="layui-badge-dot lovexian-bg-orange"></span> 无权限
+        </span>
+    {{# } }}
+</script>
+
+<script>
+    layui.use('news/news', layui.factory('news'));
+</script>

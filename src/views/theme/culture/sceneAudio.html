@@ -1,0 +1,21 @@
+<script type="text/html" template >
+    <input type="text" id="sceneId" class="hidden" style="display:none;" value="{{d.params.sceneId}}"/>
+
+    <form class="layui-form">
+        <blockquote class="layui-elem-quote news_search" style="background-color: white;border-left: 5px solid #1890ff;">
+            <div class="layui-inline">
+                <button type="button" class="layui-btn layui-btn-sm  uploadAudio">上传音频</button>
+            </div>
+            <div class="layui-progress layui-progress-big" lay-showPercent="yes" lay-filter="progressBar" id="progress">
+                <div id="progressBar" class="layui-progress-bar layui-bg-blue" lay-percent="0%"></div>
+            </div>
+        </blockquote>
+        <audio controls height="120" width="100" id="audio" class="{{d.params.hidden}}">
+            <source id="audioSource" src="{{d.params.url}}" type="audio/mpeg">
+        </audio>
+        <blockquote class="layui-elem-quote news_search {{d.params.hidden=='layui-hide'?'':'layui-hide'}}" id="nodata" style="background-color: white;border-left: 5px solid red;">
+            <p><i class="layui-icon">&#xe6b1;</i> 没音频，快来上传吧！</p>
+        </blockquote>
+    </form>
+
+</script>

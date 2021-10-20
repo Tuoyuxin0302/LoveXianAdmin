@@ -1,0 +1,73 @@
+<form class="layui-form layui-row layui-col-space10 layui-bg-white" lay-filter="organization" style="display: none"
+      id="organization">
+    <div class="layui-col-md10 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md12 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label lovexian-form-item-require">机构名</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input orgName" lay-verify="orgName" name="orgName"
+                               placeholder="请输入机构名">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">机构地址</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input orgAddress" lay-verify="orgAddress" name="orgAddress"
+                               placeholder="请输入机构地址">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">机构介绍</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入机构介绍" class="layui-textarea orgIntroduce" name="orgIntroduce"
+                                  lay-verify="orgIntroduce"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">联系方式</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input orgPhone" lay-verify="orgPhone" name="orgPhone"
+                               placeholder="请输入机构地址">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">位置名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" class="layui-input locationName" lay-verify="locationName"
+                               name="locationName" placeholder="请输入机构地址">
+                    </div>
+                </div>
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">路线</label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入机构介绍" class="layui-textarea orgRoute" name="orgRoute"
+                                  lay-verify="orgRoute"></textarea>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-col-md2 layui-col-xs12">
+        <blockquote class="layui-elem-quote title"><i class="layui-icon">&#xe66e;</i> 机构图片</blockquote>
+        <div class="border">
+            <div class="layui-form-item">
+                <div class="layui-upload-list mag0 magt4">
+                    <img class="layui-upload-img thumbImg" name="headImage" id="headImage" lay-verify="headImage">
+                </div>
+            </div>
+        </div>
+        <label class="layui-form-label">机构经度</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input longitude" lay-verify="longitude" name="longitude"
+                   placeholder="请输入机构地址">
+        </div>
+        <label class="layui-form-label">机构纬度</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input latitude" lay-verify="latitude" name="latitude"
+                   placeholder="请输入机构地址">
+        </div>
+    </div>
+</form>
